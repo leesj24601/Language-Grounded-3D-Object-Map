@@ -6,24 +6,24 @@
   <img src="https://img.shields.io/badge/SAM-Segmentation-1F7A68?style=flat" alt="Segment Anything">
   <img src="https://img.shields.io/badge/Dataset-ARKitScenes-111827?style=flat" alt="ARKitScenes">
   <p>Language-grounded object-level semantic mapping from RGB-D frames, camera poses, Grounding DINO, and SAM.</p>
-  <img src="assets/language-ground-3d-map.png" width="72%" alt="Language-grounded 3D object map query demo">
+  <img src="assets/hero2.png" width="68%" alt="Conceptual overview of language-grounded 3D object mapping">
 </div>
 
 ---
 
 ## Overview
 
-**Language-Grounded 3D Object Map** builds an object-level semantic map from an indoor RGB-D sequence. The system detects text-specified objects with **Grounding DINO**, segments them with **SAM**, projects object masks into 3D using depth and camera pose, and fuses multi-frame observations into a semantic object map.
+**Language-Grounded 3D Object Map** turns natural-language object queries into **metric 3D coordinates**. It is designed as a semantic grounding layer for **Physical AI**: a legged robot, mobile robot, or embodied agent can use commands like `"go to the TV"` or `"where is the chair?"` as spatial goals in a mapped indoor scene.
 
-The goal is not dense 3D instance segmentation. Instead, this project focuses on **object-level localization for language queries**:
+The system builds an object-level semantic map from RGB-D frames and camera poses. **Grounding DINO** detects text-specified objects, **SAM** segments them, and depth projection converts those masks into 3D object centroids.
 
 ```text
 "Where is the chair?"
 "How many tables are there?"
-"What is the nearest TV from this clicked point?"
+"What is the nearest TV from the reference point?"
 ```
 
-The final map stores object candidates as `label + centroid_m + observation_count`, then serves queries through a lightweight browser demo.
+The focus is not dense 3D reconstruction. The focus is **object-level localization for language queries**, with applications in object-goal navigation, indoor object search, and spatial memory for embodied AI.
 
 ---
 
@@ -309,7 +309,7 @@ conda run -n cv python scripts/evaluate_semantic_map.py \
       </td>
       <td align="center">
         <strong>Demo Run</strong><br>
-        <img src="docs/static/videos/language_ground_3d_map.gif" width="360" alt="Language-grounded 3D object map demo run">
+        <img src="docs/static/videos/3d-map-web.gif" width="360" alt="Language-grounded 3D object map demo run">
       </td>
     </tr>
   </table>
