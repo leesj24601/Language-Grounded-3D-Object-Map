@@ -1,0 +1,955 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Semantic Map Query Demo</title>
+    <link rel="icon" href="data:," />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f5f7fb;
+        --panel: #ffffff;
+        --ink: #172033;
+        --muted: #667085;
+        --line: #d8deea;
+        --accent: #1f7a68;
+        --accent-weak: #e4f4ef;
+        --warn: #985c06;
+        --warn-weak: #fff3d6;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+
+      main {
+        width: min(1080px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 32px 0 48px;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        align-items: flex-end;
+        margin-bottom: 24px;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: 28px;
+        line-height: 1.2;
+        letter-spacing: 0;
+      }
+
+      .subtle {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .status {
+        padding: 8px 12px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        color: var(--muted);
+        font-size: 13px;
+        white-space: nowrap;
+      }
+
+      .query-panel {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        padding: 18px;
+      }
+
+      form {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 12px;
+      }
+
+      input,
+      select,
+      button {
+        font: inherit;
+      }
+
+      input[type="search"] {
+        width: 100%;
+        min-height: 48px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 0 14px;
+        color: var(--ink);
+        background: #fff;
+        outline: none;
+      }
+
+      input[type="search"]:focus,
+      select:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-weak);
+      }
+
+      button {
+        min-height: 48px;
+        border: 0;
+        border-radius: 8px;
+        padding: 0 18px;
+        background: var(--accent);
+        color: white;
+        cursor: pointer;
+        font-weight: 700;
+      }
+
+      button:hover {
+        filter: brightness(0.95);
+      }
+
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+        margin-top: 14px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .controls label {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .segmented {
+        display: inline-flex;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      .segmented button {
+        min-height: 34px;
+        border-radius: 0;
+        border-right: 1px solid var(--line);
+        padding: 0 12px;
+        background: #fff;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .segmented button:last-child {
+        border-right: 0;
+      }
+
+      .segmented button.active {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      select {
+        min-height: 34px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 0 10px;
+        background: #fff;
+        color: var(--ink);
+      }
+
+      .examples {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 14px;
+      }
+
+      .chip {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: #fff;
+        padding: 7px 10px;
+        color: var(--muted);
+        font-size: 13px;
+        cursor: pointer;
+      }
+
+      .chip:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .guide {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 12px;
+        margin-top: 14px;
+      }
+
+      .guide-box {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fbfdff;
+        padding: 12px;
+      }
+
+      .guide-box h2 {
+        margin: 0 0 10px;
+        font-size: 14px;
+        line-height: 1.35;
+      }
+
+      .label-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .label-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: #fff;
+        padding: 6px 9px;
+        color: var(--ink);
+        font-size: 12px;
+      }
+
+      .label-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex: 0 0 auto;
+      }
+
+      .guide-list {
+        display: grid;
+        gap: 6px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.4;
+      }
+
+      .answer {
+        margin-top: 20px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        overflow: hidden;
+      }
+
+      .answer-header {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 16px 18px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .answer-title {
+        margin: 0;
+        font-size: 18px;
+        line-height: 1.35;
+      }
+
+      .answer-meta {
+        color: var(--muted);
+        font-size: 13px;
+        text-align: right;
+      }
+
+      .notice {
+        margin: 16px 18px;
+        padding: 12px;
+        border-radius: 8px;
+        background: var(--warn-weak);
+        color: var(--warn);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 12px;
+        padding: 18px;
+      }
+
+      .map-panel {
+        margin: 0 18px 18px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        overflow: hidden;
+      }
+
+      .map-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .map-wrap {
+        padding: 12px;
+      }
+
+      .map-wrap svg {
+        display: block;
+        width: min(100%, 620px);
+        height: auto;
+        min-height: 520px;
+        margin: 0 auto;
+      }
+
+      .map-label {
+        fill: #334155;
+        font-size: 11px;
+        font-weight: 700;
+        paint-order: stroke;
+        stroke: #fff;
+        stroke-width: 4px;
+        stroke-linejoin: round;
+      }
+
+      .axis-label {
+        fill: #64748b;
+        font-size: 11px;
+      }
+
+      .legend {
+        display: inline-flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .legend span {
+        display: inline-flex;
+        gap: 6px;
+        align-items: center;
+      }
+
+      .legend i {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+
+      .map-hint {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 14px;
+        background: #fff;
+      }
+
+      .card h3 {
+        margin: 0 0 8px;
+        font-size: 16px;
+        line-height: 1.3;
+      }
+
+      .coord {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin: 12px 0;
+      }
+
+      .coord span {
+        border-radius: 8px;
+        background: #f0f4f8;
+        padding: 8px;
+        text-align: center;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .empty {
+        padding: 24px 18px;
+        color: var(--muted);
+      }
+
+      @media (max-width: 720px) {
+        header,
+        .answer-header {
+          display: block;
+        }
+
+        .status,
+        .answer-meta {
+          display: inline-block;
+          margin-top: 12px;
+          text-align: left;
+          white-space: normal;
+        }
+
+        form {
+          grid-template-columns: 1fr;
+        }
+
+        .guide {
+          grid-template-columns: 1fr;
+        }
+
+        button {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div>
+          <h1>Semantic Map Query Demo</h1>
+          <p class="subtle">100 frame map 기준으로 객체 label을 찾고 world 좌표를 반환합니다.</p>
+        </div>
+        <div class="status" id="status">map 로딩 중</div>
+      </header>
+
+      <section class="query-panel" aria-label="query input">
+        <form id="queryForm">
+          <input
+            id="queryInput"
+            type="search"
+            autocomplete="off"
+            placeholder="예: 의자 어딨어? / chair count / 가장 가까운 TV"
+            value="의자 어딨어?"
+          />
+          <button type="submit">검색</button>
+        </form>
+        <div class="controls">
+          <label>
+            신뢰도 필터
+            <select id="minObs">
+              <option value="1">obs >= 1</option>
+              <option value="2">obs >= 2</option>
+              <option value="3" selected>obs >= 3</option>
+              <option value="5">obs >= 5</option>
+              <option value="8">obs >= 8</option>
+              <option value="10">obs >= 10</option>
+            </select>
+          </label>
+          <span class="segmented" aria-label="map mode">
+            <button type="button" class="active" data-map-mode="pred">예측</button>
+            <button type="button" data-map-mode="gt">정답</button>
+            <button type="button" data-map-mode="both">비교</button>
+          </span>
+          <span>기본값은 대표 실험 설정인 observation_count >= 3입니다.</span>
+        </div>
+        <div class="examples" id="examples"></div>
+        <div class="guide">
+          <section class="guide-box">
+            <h2>사용 가능한 객체</h2>
+            <div class="label-list" id="labelList"></div>
+          </section>
+          <section class="guide-box">
+            <h2>질문 예시</h2>
+            <ul class="guide-list">
+              <li>위치: <strong>의자 어딨어?</strong>, <strong>냉장고 위치</strong></li>
+              <li>개수: <strong>chair 몇 개야?</strong>, <strong>table count</strong></li>
+              <li>가까운 객체: <strong>가장 가까운 TV</strong></li>
+              <li>지도에서 기준점을 클릭하면 nearest 기준이 바뀝니다.</li>
+            </ul>
+          </section>
+        </div>
+      </section>
+
+      <section class="answer" id="answer" aria-live="polite">
+        <div class="empty">map이 로드되면 검색 결과가 여기에 표시됩니다.</div>
+      </section>
+    </main>
+
+    <script>
+      const MAP_PATH = "../outputs/maps/41098076_semantic_map_100frames_text035.json";
+      const GT_PATH = "../data/arkitscenes/3dod/Training/41098076/41098076_3dod_annotation.json";
+      const labelAliases = new Map([
+        ["chair", "chair"],
+        ["chairs", "chair"],
+        ["의자", "chair"],
+        ["table", "table"],
+        ["tables", "table"],
+        ["테이블", "table"],
+        ["책상", "table"],
+        ["sofa", "sofa"],
+        ["couch", "sofa"],
+        ["소파", "sofa"],
+        ["cabinet", "cabinet"],
+        ["수납장", "cabinet"],
+        ["캐비닛", "cabinet"],
+        ["싱크대", "sink"],
+        ["sink", "sink"],
+        ["stove", "stove"],
+        ["가스레인지", "stove"],
+        ["tv", "tv_monitor"],
+        ["티비", "tv_monitor"],
+        ["텔레비전", "tv_monitor"],
+        ["monitor", "tv_monitor"],
+        ["tv monitor", "tv_monitor"],
+        ["tv_monitor", "tv_monitor"],
+        ["냉장고", "refrigerator"],
+        ["refrigerator", "refrigerator"],
+        ["fridge", "refrigerator"],
+      ]);
+
+      const examples = ["의자 어딨어?", "chair 몇 개야?", "가장 가까운 TV", "냉장고 위치", "sofa location"];
+      let semanticObjects = [];
+      let gtObjects = [];
+      let mapMode = "pred";
+
+      const statusEl = document.querySelector("#status");
+      const answerEl = document.querySelector("#answer");
+      const queryInput = document.querySelector("#queryInput");
+      const minObsSelect = document.querySelector("#minObs");
+      let mapBounds = null;
+      let referencePoint = { x: 0, y: 0, z: 0, source: "world origin" };
+
+      function canonicalize(text) {
+        const normalized = text.toLowerCase().replaceAll("_", " ").trim();
+        const aliases = [...labelAliases.entries()].sort((a, b) => b[0].length - a[0].length);
+        for (const [needle, label] of aliases) {
+          if (normalized.includes(needle)) return label;
+        }
+        return null;
+      }
+
+      function parseQuery(text) {
+        const lower = text.toLowerCase();
+        let type = "location";
+        if (lower.includes("몇") || lower.includes("개") || lower.includes("count") || lower.includes("how many")) {
+          type = "count";
+        }
+        if (lower.includes("가까운") || lower.includes("nearest") || lower.includes("closest")) {
+          type = "nearest";
+        }
+        return { type, label: canonicalize(text) };
+      }
+
+      function distanceFromOrigin(obj) {
+        return Math.hypot(...obj.centroid_m);
+      }
+
+      function distanceFromReference(obj) {
+        const [x, y, z] = obj.centroid_m;
+        return Math.hypot(x - referencePoint.x, y - referencePoint.y, z - referencePoint.z);
+      }
+
+      function xyDistanceFromReference(obj) {
+        const [x, y] = obj.centroid_m;
+        return Math.hypot(x - referencePoint.x, y - referencePoint.y);
+      }
+
+      function formatCoord(value) {
+        return Number(value).toFixed(3);
+      }
+
+      function renderCards(objects) {
+        return objects
+          .map((obj, index) => {
+            const [x, y, z] = obj.centroid_m;
+            return `
+              <article class="card">
+                <h3>${index + 1}. ${obj.object_id}</h3>
+                <div class="coord">
+                  <span>x ${formatCoord(x)}</span>
+                  <span>y ${formatCoord(y)}</span>
+                  <span>z ${formatCoord(z)}</span>
+                </div>
+                <p>observation_count ${obj.observation_count} · confidence ${Number(obj.confidence_max).toFixed(3)} · 기준점 XY 거리 ${xyDistanceFromReference(obj).toFixed(3)}m</p>
+              </article>
+            `;
+          })
+          .join("");
+      }
+
+      function labelColor(label) {
+        const colors = {
+          cabinet: "#2563eb",
+          chair: "#dc2626",
+          refrigerator: "#0891b2",
+          sink: "#0f766e",
+          sofa: "#7c3aed",
+          stove: "#ea580c",
+          table: "#ca8a04",
+          tv_monitor: "#475569",
+        };
+        return colors[label] ?? "#64748b";
+      }
+
+      function renderMap(highlightObjects, minObs) {
+        const contextObjects = semanticObjects.filter((obj) => obj.observation_count >= minObs);
+        const gtContext = gtObjects;
+        const visiblePred = mapMode === "pred" || mapMode === "both";
+        const visibleGt = mapMode === "gt" || mapMode === "both";
+        const extentObjects = [
+          ...(visiblePred ? contextObjects : []),
+          ...(visibleGt ? gtContext : []),
+        ];
+        if (extentObjects.length === 0) return "";
+
+        const width = 560;
+        const height = 560;
+        const pad = 42;
+        const xs = extentObjects.map((obj) => obj.centroid_m[0]);
+        const ys = extentObjects.map((obj) => obj.centroid_m[1]);
+        let minX = Math.min(...xs);
+        let maxX = Math.max(...xs);
+        let minY = Math.min(...ys);
+        let maxY = Math.max(...ys);
+        if (Math.abs(maxX - minX) < 0.001) {
+          minX -= 1;
+          maxX += 1;
+        }
+        if (Math.abs(maxY - minY) < 0.001) {
+          minY -= 1;
+          maxY += 1;
+        }
+        const spanX = maxX - minX;
+        const spanY = maxY - minY;
+        minX -= spanX * 0.08;
+        maxX += spanX * 0.08;
+        minY -= spanY * 0.08;
+        maxY += spanY * 0.08;
+
+        const drawAspect = (width - pad * 2) / (height - pad * 2);
+        const dataAspect = (maxX - minX) / (maxY - minY);
+        if (dataAspect > drawAspect) {
+          const targetSpanY = (maxX - minX) / drawAspect;
+          const centerY = (minY + maxY) / 2;
+          minY = centerY - targetSpanY / 2;
+          maxY = centerY + targetSpanY / 2;
+        } else {
+          const targetSpanX = (maxY - minY) * drawAspect;
+          const centerX = (minX + maxX) / 2;
+          minX = centerX - targetSpanX / 2;
+          maxX = centerX + targetSpanX / 2;
+        }
+
+        const scaleX = (x) => pad + ((x - minX) / (maxX - minX)) * (width - pad * 2);
+        const scaleY = (y) => height - pad - ((y - minY) / (maxY - minY)) * (height - pad * 2);
+        mapBounds = { minX, maxX, minY, maxY, width, height, pad };
+        const highlighted = new Set(highlightObjects.map((obj) => obj.object_id));
+
+        const grid = [0.25, 0.5, 0.75]
+          .map((ratio) => {
+            const x = pad + ratio * (width - pad * 2);
+            const y = pad + ratio * (height - pad * 2);
+            return `
+              <line x1="${x}" y1="${pad}" x2="${x}" y2="${height - pad}" stroke="#e2e8f0" stroke-width="1" />
+              <line x1="${pad}" y1="${y}" x2="${width - pad}" y2="${y}" stroke="#e2e8f0" stroke-width="1" />
+            `;
+          })
+          .join("");
+
+        const basePoints = visiblePred
+          ? contextObjects
+          .filter((obj) => !highlighted.has(obj.object_id))
+          .map((obj) => {
+            const x = scaleX(obj.centroid_m[0]);
+            const y = scaleY(obj.centroid_m[1]);
+            return `<circle cx="${x}" cy="${y}" r="5" fill="${labelColor(obj.label)}" opacity="0.28" />`;
+          })
+          .join("")
+          : "";
+
+        const gtPoints = visibleGt
+          ? gtContext
+            .map((obj) => {
+              const x = scaleX(obj.centroid_m[0]);
+              const y = scaleY(obj.centroid_m[1]);
+              return `
+                <g>
+                  <path d="M ${x - 6} ${y} L ${x} ${y - 6} L ${x + 6} ${y} L ${x} ${y + 6} Z" fill="${labelColor(obj.label)}" stroke="#111827" stroke-width="1.5" opacity="0.9" />
+                  ${mapMode === "gt" ? `<text class="map-label" x="${x + 9}" y="${y - 8}">${obj.label}</text>` : ""}
+                </g>
+              `;
+            })
+            .join("")
+          : "";
+
+        const activePoints = visiblePred
+          ? highlightObjects
+          .map((obj, index) => {
+            const x = scaleX(obj.centroid_m[0]);
+            const y = scaleY(obj.centroid_m[1]);
+            const color = labelColor(obj.label);
+            return `
+              <g>
+                <circle cx="${x}" cy="${y}" r="12" fill="${color}" opacity="0.18" />
+                <circle cx="${x}" cy="${y}" r="6.5" fill="${color}" stroke="#ffffff" stroke-width="2" />
+                <text class="map-label" x="${x + 10}" y="${y - 9}">${index + 1}. ${obj.object_id}</text>
+              </g>
+            `;
+          })
+          .join("")
+          : "";
+
+        const refX = scaleX(referencePoint.x);
+        const refY = scaleY(referencePoint.y);
+        const referenceMarker = `
+          <g>
+            <line x1="${refX - 11}" y1="${refY}" x2="${refX + 11}" y2="${refY}" stroke="#111827" stroke-width="2" />
+            <line x1="${refX}" y1="${refY - 11}" x2="${refX}" y2="${refY + 11}" stroke="#111827" stroke-width="2" />
+            <circle cx="${refX}" cy="${refY}" r="5" fill="#ffffff" stroke="#111827" stroke-width="2" />
+            <text class="map-label" x="${refX + 10}" y="${refY + 18}">기준점</text>
+          </g>
+        `;
+
+        return `
+          <section class="map-panel" aria-label="top-down map">
+            <div class="map-head">
+              <span>Top-down map <span class="map-hint">· 지도 클릭으로 기준점 변경</span></span>
+              <span class="legend">
+                ${visiblePred ? "<span><i style=\"background:#1f7a68\"></i>prediction</span>" : ""}
+                ${visibleGt ? "<span><i style=\"background:#111827; border-radius:2px\"></i>GT</span>" : ""}
+                <span>기준점 (${referencePoint.x.toFixed(2)}, ${referencePoint.y.toFixed(2)}, ${referencePoint.z.toFixed(2)})</span>
+              </span>
+            </div>
+            <div class="map-wrap">
+              <svg id="topDownMap" viewBox="0 0 ${width} ${height}" role="img" aria-label="semantic map points">
+                <rect x="${pad}" y="${pad}" width="${width - pad * 2}" height="${height - pad * 2}" rx="8" fill="#f8fafc" stroke="#cbd5e1" />
+                ${grid}
+                <line x1="${pad}" y1="${height - pad}" x2="${width - pad}" y2="${height - pad}" stroke="#94a3b8" />
+                <line x1="${pad}" y1="${height - pad}" x2="${pad}" y2="${pad}" stroke="#94a3b8" />
+                <text class="axis-label" x="${width - pad - 14}" y="${height - pad + 24}">x</text>
+                <text class="axis-label" x="${pad - 24}" y="${pad + 12}">y</text>
+                ${basePoints}
+                ${gtPoints}
+                ${activePoints}
+                ${referenceMarker}
+              </svg>
+            </div>
+          </section>
+        `;
+      }
+
+      function renderAnswer(queryText) {
+        const minObs = Number(minObsSelect.value);
+        updateStatus(minObs);
+        const parsed = parseQuery(queryText);
+
+        if (!parsed.label) {
+          answerEl.innerHTML = `
+            <div class="answer-header">
+              <div>
+                <h2 class="answer-title">지원하는 객체 label을 찾지 못했습니다.</h2>
+                <p class="subtle">현재 demo는 chair, table, sofa, cabinet, tv monitor, refrigerator, sink, stove를 지원합니다.</p>
+              </div>
+            </div>
+          `;
+          return;
+        }
+
+        let matches = semanticObjects
+          .filter((obj) => obj.label === parsed.label && obj.observation_count >= minObs)
+          .sort((a, b) => b.observation_count - a.observation_count || b.confidence_max - a.confidence_max);
+
+        let title = `${parsed.label} 검색 결과`;
+        let notice = "";
+
+        if (parsed.type === "nearest") {
+          matches = matches.sort((a, b) => xyDistanceFromReference(a) - xyDistanceFromReference(b)).slice(0, 1);
+          title = `가장 가까운 ${parsed.label}`;
+          notice = `현재 nearest는 ${referencePoint.source} 기준의 x-y 평면 거리로 계산합니다. 지도에서 원하는 위치를 클릭하면 기준점이 바뀝니다.`;
+        }
+
+        if (parsed.type === "count") {
+          title = `${parsed.label} 개수: ${matches.length}개`;
+          notice = "개수는 현재 observation_count 필터를 통과한 semantic map 객체 기준입니다.";
+        }
+
+        if (matches.length === 0) {
+          answerEl.innerHTML = `
+            <div class="answer-header">
+              <div>
+                <h2 class="answer-title">${parsed.label} 결과 없음</h2>
+                <p class="subtle">필터를 낮추거나 query-time open-vocabulary expansion을 실행해야 합니다.</p>
+              </div>
+              <div class="answer-meta">min obs ${minObs}</div>
+            </div>
+          `;
+          return;
+        }
+
+        answerEl.innerHTML = `
+          <div class="answer-header">
+            <div>
+              <h2 class="answer-title">${title}</h2>
+              <p class="subtle">질문: ${queryText}</p>
+            </div>
+            <div class="answer-meta">label ${parsed.label}<br />min obs ${minObs}</div>
+          </div>
+          ${notice ? `<div class="notice">${notice}</div>` : ""}
+          <div class="cards">${renderCards(matches)}</div>
+          ${renderMap(matches, minObs)}
+        `;
+      }
+
+      function setupExamples() {
+        const wrap = document.querySelector("#examples");
+        wrap.innerHTML = examples
+          .map((text) => `<button class="chip" type="button" data-query="${text}">${text}</button>`)
+          .join("");
+        wrap.addEventListener("click", (event) => {
+          const button = event.target.closest("[data-query]");
+          if (!button) return;
+          queryInput.value = button.dataset.query;
+          renderAnswer(queryInput.value);
+        });
+      }
+
+      function parseGtObjects(annotation) {
+        return (annotation.data ?? [])
+          .map((item) => {
+            const obb = item.segments?.obbAligned ?? item.segments?.obb;
+            if (!obb?.centroid) return null;
+            return {
+              object_id: `gt_${item.label}_${item.uid}`,
+              label: item.label,
+              centroid_m: obb.centroid,
+              observation_count: 1,
+              confidence_max: 1,
+              uid: item.uid,
+            };
+          })
+          .filter(Boolean);
+      }
+
+      function renderLabelGuide(minObs = Number(minObsSelect.value)) {
+        const labelList = document.querySelector("#labelList");
+        if (!labelList) return;
+        const counts = new Map();
+        for (const obj of semanticObjects) {
+          if (obj.observation_count < minObs) continue;
+          counts.set(obj.label, (counts.get(obj.label) ?? 0) + 1);
+        }
+        const labels = [...counts.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+        labelList.innerHTML = labels
+          .map(
+            ([label, count]) => `
+              <span class="label-pill" title="${label} ${count}개 표시 중">
+                <i class="label-dot" style="background:${labelColor(label)}"></i>
+                ${label} ${count}
+              </span>
+            `
+          )
+          .join("");
+      }
+
+      function updateStatus(minObs = Number(minObsSelect.value)) {
+        const shownPredictions = semanticObjects.filter((obj) => obj.observation_count >= minObs).length;
+        statusEl.textContent = `prediction 표시 ${shownPredictions}/${semanticObjects.length} · GT ${gtObjects.length}`;
+        renderLabelGuide(minObs);
+      }
+
+      async function loadMap() {
+        const [mapResponse, gtResponse] = await Promise.all([fetch(MAP_PATH), fetch(GT_PATH)]);
+        if (!mapResponse.ok) throw new Error(`map HTTP ${mapResponse.status}`);
+        if (!gtResponse.ok) throw new Error(`GT HTTP ${gtResponse.status}`);
+        const data = await mapResponse.json();
+        const gtData = await gtResponse.json();
+        semanticObjects = data.objects ?? [];
+        gtObjects = parseGtObjects(gtData);
+        updateStatus();
+        renderAnswer(queryInput.value);
+      }
+
+      document.querySelector("#queryForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+        renderAnswer(queryInput.value);
+      });
+
+      answerEl.addEventListener("click", (event) => {
+        const path = event.composedPath ? event.composedPath() : [];
+        const svg =
+          path.find((item) => item?.id === "topDownMap") ??
+          event.target.closest?.("#topDownMap") ??
+          event.target.ownerSVGElement;
+        if (!svg || !mapBounds) return;
+
+        const rect = svg.getBoundingClientRect();
+        const viewX = ((event.clientX - rect.left) / rect.width) * mapBounds.width;
+        const viewY = ((event.clientY - rect.top) / rect.height) * mapBounds.height;
+        const clampedX = Math.min(Math.max(viewX, mapBounds.pad), mapBounds.width - mapBounds.pad);
+        const clampedY = Math.min(Math.max(viewY, mapBounds.pad), mapBounds.height - mapBounds.pad);
+        const worldX =
+          mapBounds.minX +
+          ((clampedX - mapBounds.pad) / (mapBounds.width - mapBounds.pad * 2)) *
+            (mapBounds.maxX - mapBounds.minX);
+        const worldY =
+          mapBounds.minY +
+          ((mapBounds.height - mapBounds.pad - clampedY) /
+            (mapBounds.height - mapBounds.pad * 2)) *
+            (mapBounds.maxY - mapBounds.minY);
+
+        referencePoint = {
+          x: worldX,
+          y: worldY,
+          z: 0,
+          source: `clicked point (${worldX.toFixed(2)}, ${worldY.toFixed(2)}, 0.00)`,
+        };
+        renderAnswer(queryInput.value);
+      });
+
+      minObsSelect.addEventListener("change", () => renderAnswer(queryInput.value));
+      document.querySelectorAll("[data-map-mode]").forEach((button) => {
+        button.addEventListener("click", () => {
+          mapMode = button.dataset.mapMode;
+          document.querySelectorAll("[data-map-mode]").forEach((item) => {
+            item.classList.toggle("active", item === button);
+          });
+          renderAnswer(queryInput.value);
+        });
+      });
+
+      setupExamples();
+      loadMap().catch((error) => {
+        statusEl.textContent = "map load failed";
+        answerEl.innerHTML = `
+          <div class="notice">
+            map JSON을 불러오지 못했습니다. repo root에서 로컬 서버를 실행한 뒤 접속하세요.
+            <br />error: ${error.message}
+          </div>
+        `;
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local agent / tool state
+.omc/
+.omx/
+.playwright-mcp/
+
+# Large datasets and cloned upstream repos
+data/
+external/
+
+# Model checkpoints and weights
+models/
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+
+# Generated experiment outputs
+outputs/
+
+# Local OS/editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Local scratch files
+my.md
+view-room-interior-with-furniture-copy-space_23-2150680549.jpg
