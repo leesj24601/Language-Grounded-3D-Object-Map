@@ -1,7 +1,7 @@
 <div align="center">
   <h1>Language-Grounded 3D Object Map</h1>
   <a href="README.ko.md">
-    <img src="https://img.shields.io/badge/README-KO%20%E2%86%90%20click%21-111827?style=for-the-badge" height="42" alt="Korean README">
+    <img src="https://img.shields.io/badge/README-KO%20%E2%86%90%20click%21-111827?style=for-the-badge" height="64" alt="Korean README">
   </a>
   <br><br>
   <img src="https://img.shields.io/badge/Python-3.11-3776AB?style=flat&logo=python&logoColor=white" alt="Python 3.11">
@@ -263,8 +263,8 @@ python3 scripts/serve_query_demo.py
   <strong>Demo Run</strong><br>
   <img src="docs/static/videos/3d-map-web.gif" width="520" alt="Language-grounded 3D object map demo run"><br>
   <a href="https://youtu.be/6Q8FwhylWOU">
-    <img src="https://img.shields.io/badge/YouTube-Demo%20Video-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="YouTube demo video">
-  </a> ← click!
+    <img src="https://img.shields.io/badge/YouTube-Demo%20Video%20%E2%86%90%20click%21-FF0000?style=for-the-badge&logo=youtube&logoColor=white" height="36" alt="YouTube demo video">
+  </a>
 </div>
 
 Start the local server:
