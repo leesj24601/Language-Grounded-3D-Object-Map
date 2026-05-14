@@ -13,6 +13,8 @@ venv/
 env/
 
 # Local agent / tool state
+.agents/
+.codex/
 .omc/
 .omx/
 .playwright-mcp/
@@ -42,3 +44,7 @@ Thumbs.db
 # Local scratch files
 my.md
 view-room-interior-with-furniture-copy-space_23-2150680549.jpg
+
+# Unused/generated README image drafts
+assets/hero-object-map-generated.png
+assets/language-ground-3d-map.png

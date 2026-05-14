@@ -1,7 +1,7 @@
 <div align="center">
   <h1>Language-Grounded 3D Object Map</h1>
-  <a href="README.ko.md">
-    <img src="https://img.shields.io/badge/README-KO%20%E2%86%90%20click%21-111827?style=for-the-badge" height="42" alt="Korean README">
+  <a href="README.md">
+    <img src="https://img.shields.io/badge/README-EN%20%E2%86%90%20click%21-111827?style=for-the-badge" height="42" alt="English README">
   </a>
   <br><br>
   <img src="https://img.shields.io/badge/Python-3.11-3776AB?style=flat&logo=python&logoColor=white" alt="Python 3.11">
@@ -9,17 +9,17 @@
   <img src="https://img.shields.io/badge/Grounding_DINO-Open--Vocabulary-2563EB?style=flat" alt="Grounding DINO">
   <img src="https://img.shields.io/badge/SAM-Segmentation-1F7A68?style=flat" alt="Segment Anything">
   <img src="https://img.shields.io/badge/Dataset-ARKitScenes-111827?style=flat" alt="ARKitScenes">
-  <p>Language-grounded object-level semantic mapping from RGB-D frames, camera poses, Grounding DINO, and SAM.</p>
-  <img src="assets/hero2.png" width="68%" alt="Conceptual overview of language-grounded 3D object mapping">
+  <p>RGB-D frames, camera poses, Grounding DINO, SAM을 활용한 language-grounded object-level semantic mapping.</p>
+  <img src="assets/hero2.png" width="68%" alt="language-grounded 3D object mapping 개념 개요">
 </div>
 
 ---
 
-## Overview
+## 개요
 
-**Language-Grounded 3D Object Map** turns natural-language object queries into **metric 3D coordinates**. It is designed as a semantic grounding layer for **Physical AI**: a legged robot, mobile robot, or embodied agent can use commands like `"go to the TV"` or `"where is the chair?"` as spatial goals in a mapped indoor scene.
+**Language-Grounded 3D Object Map**은 natural-language object queries를 **metric 3D coordinates**로 변환하는 시스템이다. **Physical AI**를 위한 semantic grounding layer로 설계되었으며, legged/mobile robot이나 embodied agent가 `"go to the TV"` 또는 `"where is the chair?"` 같은 명령을 mapped indoor scene의 spatial goal로 사용할 수 있다.
 
-The system builds an object-level semantic map from RGB-D frames and camera poses. **Grounding DINO** detects text-specified objects, **SAM** segments them, and depth projection converts those masks into 3D object centroids.
+RGB-D frames와 camera poses로부터 object-level semantic map을 구축한다. **Grounding DINO**는 text-specified object detection, **SAM**은 segmentation을 담당하며, depth projection은 masks를 3D object centroids로 변환한다.
 
 ```text
 "Where is the chair?"
@@ -27,11 +27,11 @@ The system builds an object-level semantic map from RGB-D frames and camera pose
 "What is the nearest TV from the reference point?"
 ```
 
-The focus is not dense 3D reconstruction. The focus is **object-level localization for language queries**, with applications in object-goal navigation, indoor object search, and spatial memory for embodied AI.
+핵심은 dense 3D reconstruction이 아니라 **language queries를 위한 object-level localization**이다. 주요 활용 범위는 object-goal navigation, indoor object search, embodied AI의 spatial memory.
 
 ---
 
-## System Architecture
+## 시스템 아키텍처
 
 ```mermaid
 flowchart TB
@@ -85,64 +85,64 @@ flowchart TB
 
 ---
 
-## Project Roadmap
+## 프로젝트 로드맵
 
 - [x] **Phase 1: Environment & Model Setup**
-  - Conda `cv` environment.
+  - Conda `cv` 환경.
   - PyTorch CUDA, Grounding DINO, SAM, Open3D, OpenCV.
-  - Grounding DINO Swin-T OGC and SAM ViT-B weights.
+  - Grounding DINO Swin-T OGC 및 SAM ViT-B weights.
 - [x] **Phase 2: ARKitScenes Scene Loading**
-  - Single ARKitScenes 3DOD scene `41098076`.
-  - RGB, depth, intrinsics, camera trajectory, and GT object annotations.
+  - 단일 ARKitScenes 3DOD scene `41098076`.
+  - RGB, depth, intrinsics, camera trajectory, GT object annotations.
 - [x] **Phase 3: 2D Detection + Segmentation**
-  - Text-prompt object detection with Grounding DINO.
-  - Bbox-to-mask segmentation with SAM.
+  - Grounding DINO를 이용한 text-prompt object detection.
+  - SAM을 이용한 bbox-to-mask segmentation.
 - [x] **Phase 4: 3D Projection + Semantic Map**
   - Mask/depth unprojection.
   - Camera-to-world transform.
   - Centroid-based object association.
 - [x] **Phase 5: Evaluation**
   - Centroid-based precision, recall, localization error, duplicate rate.
-  - 20-frame, 50-frame, 100-frame, and keyframe ablations.
+  - 20-frame, 50-frame, 100-frame, keyframe ablations.
 - [x] **Phase 6: Browser Query Demo**
-  - Search UI for location/count/nearest queries.
-  - Top-down prediction/GT map toggle.
-  - Clickable reference point for nearest-object queries.
+  - Location/count/nearest query를 위한 search UI.
+  - Prediction/GT top-down map toggle.
+  - Nearest-object query를 위한 clickable reference point.
 
 ---
 
 ## Prerequisites
 
-- **OS**: Ubuntu 22.04 tested
+- **OS**: Ubuntu 22.04에서 테스트됨
 - **Python**: 3.11
-- **Conda**: recommended
-- **GPU**: CUDA-capable GPU recommended
-- **Dataset**: ARKitScenes 3DOD access
+- **Conda**: 권장
+- **GPU**: CUDA 지원 GPU 권장
+- **Dataset**: ARKitScenes 3DOD 접근 권한
 - **Models**:
   - Grounding DINO Swin-T OGC
   - SAM ViT-B
 
 ---
 
-## Installation & Setup
+## 설치 및 설정
 
-1. **Clone the repository**:
+1. **저장소 클론**:
 
    ```bash
    git clone https://github.com/leesj24601/Language-Grounded-3D-Object-Map.git
    cd Language-Grounded-3D-Object-Map
    ```
 
-2. **Create or activate the conda environment**:
+2. **Conda 환경 생성 또는 활성화**:
 
    ```bash
    conda create -n cv python=3.11 -y
    conda activate cv
    ```
 
-3. **Install core dependencies**:
+3. **핵심 의존성 설치**:
 
-   Install PyTorch with the CUDA build appropriate for your machine, then install the remaining packages used by the pipeline:
+   사용 중인 머신에 맞는 CUDA build의 PyTorch를 설치한 뒤, pipeline에서 사용하는 나머지 packages 설치.
 
    ```bash
    pip install opencv-python open3d scipy transformers huggingface_hub pandas
@@ -177,7 +177,7 @@ Experiment scene: ARKitScenes 3DOD `41098076`.
 
 ---
 
-## Project Structure
+## 프로젝트 구조
 
 ```text
 language-grounded-3d-object-map/
@@ -187,14 +187,14 @@ language-grounded-3d-object-map/
 │   ├── build_semantic_map_demo.py   # Multi-frame map builder
 │   ├── download_data.py             # ARKitScenes download helper
 │   ├── evaluate_semantic_map.py     # GT centroid evaluation
-│   ├── inspect_arkitscenes_scene.py # Dataset sanity check
+│   ├── inspect_arkitscenes_scene.py # 데이터셋 sanity check
 │   ├── run_frame_grounded_sam_projection.py
 │   ├── serve_query_demo.py          # Browser demo server
 │   └── verify_projector.py          # Projection sanity test
 ├── docs/
-│   ├── EXPERIMENT_LOG.md            # Detailed experiments and notes
-│   ├── PROJECT_PLAN.md              # Project plan
-│   └── PROGRESS.md                  # Development progress log
+│   ├── EXPERIMENT_LOG.md            # 상세 experiments and notes
+│   ├── PROJECT_PLAN.md              # 프로젝트 계획
+│   └── PROGRESS.md                  # 개발 진행 로그
 ├── src/
 │   ├── detector.py                  # Grounding DINO wrapper
 │   ├── segmentor.py                 # SAM wrapper
@@ -207,13 +207,13 @@ language-grounded-3d-object-map/
 
 ---
 
-## How to Run
+## 실행 방법
 
-> **Execution rule**: Run commands from the repository root unless noted otherwise.
+> **실행 규칙**: 별도 언급이 없으면 저장소 루트에서 실행.
 
-### 1. Build the Semantic Object Map
+### 1. Semantic Object Map 구축
 
-Example using the representative 100-frame setup:
+대표 100-frame setup을 사용하는 예시:
 
 ```bash
 conda run -n cv python scripts/build_semantic_map_demo.py \
@@ -224,15 +224,15 @@ conda run -n cv python scripts/build_semantic_map_demo.py \
   --out outputs/maps/41098076_semantic_map_100frames_text035.json
 ```
 
-Generated semantic map JSON:
+생성되는 semantic map JSON:
 
 ```text
 outputs/maps/41098076_semantic_map_100frames_text035.json
 ```
 
-### 2. Evaluate the Semantic Map
+### 2. Semantic Map 평가
 
-Specify the prediction map to evaluate with `--map`.
+평가에 사용할 prediction map은 `--map`으로 지정.
 
 ```bash
 conda run -n cv python scripts/evaluate_semantic_map.py \
@@ -242,10 +242,10 @@ conda run -n cv python scripts/evaluate_semantic_map.py \
   --out outputs/metrics_41098076_100frames_text035_minobs3.json
 ```
 
-### 3. Run the Web Query Demo
+### 3. Web Query Demo 실행
 
-The web demo loads the JSON configured by `MAP_PATH` in `web/query_demo.html`.
-Current default:
+Web demo는 `web/query_demo.html`의 `MAP_PATH`에 설정된 JSON을 로드.
+현재 기본값:
 
 ```text
 ../outputs/maps/41098076_semantic_map_100frames_text035.json
@@ -267,33 +267,33 @@ python3 scripts/serve_query_demo.py
   </a> ← click!
 </div>
 
-Start the local server:
+Local server 시작:
 
 ```bash
 python3 scripts/serve_query_demo.py
 ```
 
-The script prints and opens:
+주소:
 
 ```text
 http://127.0.0.1:8000/web/query_demo.html
 ```
 
-Supported query types:
+지원 query examples:
 
-- Location: `"Where is the chair?"`, `"의자 어딨어?"`
-- Count: `"chair count"`, `"chair 몇 개야?"`
-- Nearest object: `"nearest TV"`, `"가장 가까운 TV"`
+- 위치: `"Where is the chair?"`, `"의자 어딨어?"`
+- 개수: `"chair count"`, `"chair 몇 개야?"`
+- 근처 객체: `"nearest TV"`, `"가장 가까운 TV"`
 
-For nearest-object queries, the reference point can be set by clicking a location on the top-down map.
+Nearest query의 기준점은 top-down map에서 원하는 위치를 마우스로 클릭해 설정 가능.
 
 ---
 
-## Evaluation Results
+## 평가 결과
 
 <div align="center">
   <img src="assets/prediction-gt-comparison-map.png" width="760" alt="Top-down prediction versus ground-truth object centroid comparison map">
-  <p><strong>Prediction vs GT Object Map</strong><br>Top-down x-y centroid comparison for the representative 100-frame setting.<br>Circles are predictions, diamonds are GT centroids, and colors encode object labels.</p>
+  <p><strong>Prediction vs GT Object Map</strong><br>Representative 100-frame setting의 top-down x-y centroid comparison.<br>Circles는 predictions, diamonds는 GT centroids, colors는 object labels.</p>
 </div>
 
 Representative result:
@@ -317,34 +317,34 @@ Setting:
 - Thresholds: `box_threshold=0.25`, `text_threshold=0.35`
 - Filter: `observation_count >= 3`
 
-The 224 pose-keyframe experiment improved raw recall but increased duplicate candidates. The 100-frame setting is currently the best balanced representative result.
+224 pose-keyframe experiment는 raw recall을 개선했지만 duplicate candidates도 증가. 현재 가장 균형 잡힌 representative result는 100-frame setting.
 
-See [docs/EXPERIMENT_LOG.md](docs/EXPERIMENT_LOG.md) for full ablations and research-context notes.
+전체 ablation과 research-context notes는 [docs/EXPERIMENT_LOG.md](docs/EXPERIMENT_LOG.md) 참고.
 
 ---
 
-## Evaluation Notes
+## 평가 참고 사항
 
-This project uses **centroid-based object localization** rather than AP/mAP-based 3D instance segmentation.
+이 프로젝트의 평가는 AP/mAP 기반 3D instance segmentation보다 **centroid-based object localization**에 초점을 둔다.
 
-A prediction is counted as correct if:
+Prediction은 다음 조건을 만족할 때 correct로 집계.
 
 ```text
 canonical label matches
 AND predicted centroid is within 1.0m of the GT centroid
 ```
 
-The 1m threshold is chosen for indoor object-goal navigation and large-object search. The GT centroid is close to the center of the annotated 3D object box, while the predicted centroid is closer to the visible surface center projected from an RGB-D mask. For objects such as chairs, tables, and cabinets, especially when only partially visible, these two centers are not expected to match exactly.
+1m threshold는 indoor object-goal navigation과 large-object search를 기준으로 설정한 값이다. GT centroid는 annotated 3D object box의 중심에 가깝고, prediction centroid는 RGB-D mask에서 depth로 투영된 visible surface 중심에 가깝다. 특히 chair, table, cabinet처럼 크기가 있거나 부분적으로만 보이는 객체는 두 중심점이 완전히 일치하기 어렵다.
 
-The primary goal of this prototype is not exact 3D mask/box overlap. The goal is to return a usable object coordinate for a language query. AP, AP50, and AP25 are useful for full 3D instance segmentation, but they are not the primary metric here.
+따라서 이 prototype의 주요 목표는 3D mask/box overlap을 정확히 맞추는 것이 아니라, language query에 대해 usable object coordinate를 반환하는 것. AP, AP50, AP25는 full 3D instance segmentation 평가에는 유용하지만 여기서는 primary metric이 아님.
 
 ---
 
 ## Todo / Future Work
 
-- Improve object association using geometry, mask consistency, and 3D extent.
-- Add query-time open-vocabulary expansion for labels not already in the map.
-- Add optional 3D box fitting and IoU-based evaluation.
+- Geometry, mask consistency, 3D extent를 활용한 object association 개선.
+- Map에 아직 없는 label을 위한 query-time open-vocabulary expansion.
+- Optional 3D box fitting 및 IoU-based evaluation.
 
 ---
 
