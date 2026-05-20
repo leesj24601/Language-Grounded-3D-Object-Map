@@ -20,7 +20,16 @@ env/
 .playwright-mcp/
 
 # Large datasets and cloned upstream repos
-data/
+data/*
+!data/arkitscenes/
+data/arkitscenes/*
+!data/arkitscenes/3dod/
+data/arkitscenes/3dod/*
+!data/arkitscenes/3dod/Training/
+data/arkitscenes/3dod/Training/*
+!data/arkitscenes/3dod/Training/41098076/
+data/arkitscenes/3dod/Training/41098076/*
+!data/arkitscenes/3dod/Training/41098076/41098076_3dod_annotation.json
 external/
 
 # Model checkpoints and weights
@@ -31,7 +40,10 @@ models/
 *.safetensors
 
 # Generated experiment outputs
-outputs/
+outputs/*
+!outputs/maps/
+outputs/maps/*
+!outputs/maps/41098076_semantic_map_100frames_text035.json
 
 # Local OS/editor files
 .DS_Store
