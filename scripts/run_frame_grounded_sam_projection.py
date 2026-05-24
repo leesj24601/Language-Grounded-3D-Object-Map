@@ -64,11 +64,11 @@ def main() -> None:
     parser.add_argument("--frame-index", type=int, default=300)
     parser.add_argument(
         "--caption",
-        default="chair . table . sofa . cabinet . tv monitor . refrigerator . sink . stove .",
+        default="cabinet . chair . table . sofa . oven . refrigerator . washer . sink . tv monitor . stove .",
     )
     parser.add_argument("--box-threshold", type=float, default=0.25)
     parser.add_argument("--text-threshold", type=float, default=0.25)
-    parser.add_argument("--out-dir", default="outputs/figures")
+    parser.add_argument("--out-dir", default="outputs/gt_aligned_10_label/figures")
     args = parser.parse_args()
 
     out_dir = Path(args.out_dir)

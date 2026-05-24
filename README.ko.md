@@ -1,7 +1,7 @@
 <div align="center">
   <h1>Language-Grounded 3D Object Map</h1>
   <a href="README.md">
-    <img src="https://img.shields.io/badge/README-EN%20%E2%86%90%20click%21-111827?style=for-the-badge" height="64" alt="English README">
+    <img src="https://img.shields.io/badge/README-EN%20%E2%86%90%20click%21-111827?style=for-the-badge" height="42" alt="English README">
   </a>
   <br><br>
   <img src="https://img.shields.io/badge/Python-3.11-3776AB?style=flat&logo=python&logoColor=white" alt="Python 3.11">
@@ -103,7 +103,7 @@ flowchart TB
   - Centroid-based object association.
 - [x] **Phase 5: Evaluation**
   - Centroid-based precision, recall, localization error, duplicate rate.
-  - 20-frame, 50-frame, 100-frame, keyframe ablations.
+  - GT-aligned 10-label 기준 20-frame, 50-frame, 100-frame, 200-frame, threshold, association-distance ablations.
 - [x] **Phase 6: Browser Query Demo**
   - Location/count/nearest query를 위한 search UI.
   - Prediction/GT top-down map toggle.
@@ -192,7 +192,8 @@ language-grounded-3d-object-map/
 │   ├── serve_query_demo.py          # Browser demo server
 │   └── verify_projector.py          # Projection sanity test
 ├── docs/
-│   ├── EXPERIMENT_LOG.md            # 상세 experiments and notes
+│   ├── EXPERIMENT_LOG.md            # 기존 8-label experiments and notes
+│   ├── EXPERIMENT_LOG_GT_ALIGNED.md # GT-aligned 10-label experiment log
 │   ├── PROJECT_PLAN.md              # 프로젝트 계획
 │   └── PROGRESS.md                  # 개발 진행 로그
 ├── src/
@@ -221,13 +222,13 @@ conda run -n cv python scripts/build_semantic_map_demo.py \
   --frame-indices "0,8,16,24,32,40,48,56,64,72,80,88,96,104,112,120,128,137,145,153,161,169,177,185,193,201,209,217,225,233,241,249,257,265,273,281,289,297,305,313,321,329,337,345,353,361,369,377,385,393,402,410,418,426,434,442,450,458,466,474,482,490,498,506,514,522,530,538,546,554,562,570,578,586,594,602,610,618,626,634,642,650,658,667,675,683,691,699,707,715,723,731,739,747,755,763,771,779,787,795" \
   --box-threshold 0.25 \
   --text-threshold 0.35 \
-  --out outputs/maps/41098076_semantic_map_100frames_text035.json
+  --out outputs/gt_aligned_10_label/maps/41098076_semantic_map_100frames_text035.json
 ```
 
 생성되는 semantic map JSON:
 
 ```text
-outputs/maps/41098076_semantic_map_100frames_text035.json
+outputs/gt_aligned_10_label/maps/41098076_semantic_map_100frames_text035.json
 ```
 
 ### 2. Semantic Map 평가
@@ -237,18 +238,18 @@ outputs/maps/41098076_semantic_map_100frames_text035.json
 ```bash
 conda run -n cv python scripts/evaluate_semantic_map.py \
   --scene-dir data/arkitscenes/3dod/Training/41098076 \
-  --map outputs/maps/41098076_semantic_map_100frames_text035.json \
-  --min-observations 3 \
-  --out outputs/metrics_41098076_100frames_text035_minobs3.json
+  --map outputs/gt_aligned_10_label/maps/41098076_semantic_map_100frames_text035.json \
+  --min-observations 4 \
+  --out outputs/gt_aligned_10_label/metrics/metrics_41098076_100frames_text035_minobs4.json
 ```
 
 ### 3. Web Query Demo 실행
 
 Web demo는 `web/query_demo.html`의 `MAP_PATH`에 설정된 JSON을 로드.
-현재 기본값:
+Representative GT-aligned result를 사용할 경우:
 
 ```text
-../outputs/maps/41098076_semantic_map_100frames_text035.json
+../outputs/gt_aligned_10_label/maps/41098076_semantic_map_100frames_text035.json
 ```
 
 ```bash
@@ -300,14 +301,14 @@ Representative result:
 
 | Metric | Value |
 | --- | ---: |
-| **Precision@1m** | **70.37%** |
-| **Recall@1m** | **63.33%** |
+| **Precision@1m** | **84.00%** |
+| **Recall@1m** | **70.00%** |
 
 Additional metrics:
 
-- Predictions / GT / matches: 27 / 30 / 19
-- Mean / median L2 error: 31.13cm / 29.82cm
-- Duplicate rate: 29.63%
+- Predictions / GT / matches: 25 / 30 / 21
+- Mean / median L2 error: 31.11cm / 32.51cm
+- Duplicate rate: 16.00%
 
 Setting:
 
@@ -315,11 +316,13 @@ Setting:
 - Frames: 100 uniformly sampled frames
 - Model stack: Grounding DINO Swin-T OGC + SAM ViT-B
 - Thresholds: `box_threshold=0.25`, `text_threshold=0.35`
-- Filter: `observation_count >= 3`
+- Object association: `association_distance_m=0.6`
+- Filter: `observation_count >= 4`
+- GT-aligned prompt labels: `cabinet`, `chair`, `table`, `sofa`, `oven`, `refrigerator`, `washer`, `sink`, `tv_monitor`, `stove`
 
-224 pose-keyframe experiment는 raw recall을 개선했지만 duplicate candidates도 증가. 현재 가장 균형 잡힌 representative result는 100-frame setting.
+200-frame scaling experiment는 GT object를 하나 더 맞춰 `22` matches, `73.33%` recall을 기록했지만, precision은 `75.86%`로 낮아지고 duplicate/unmatched predictions는 `24.14%`로 증가했다. 따라서 recall 차이는 작고 precision과 duplicate rate 차이가 커서, representative result는 100-frame setting으로 둔다.
 
-전체 ablation과 research-context notes는 [docs/EXPERIMENT_LOG.md](docs/EXPERIMENT_LOG.md) 참고.
+현재 GT-aligned ablations는 [docs/EXPERIMENT_LOG_GT_ALIGNED.md](docs/EXPERIMENT_LOG_GT_ALIGNED.md), 기존 8-label experiments는 [docs/EXPERIMENT_LOG.md](docs/EXPERIMENT_LOG.md) 참고.
 
 ---
 

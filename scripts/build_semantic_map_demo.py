@@ -27,13 +27,13 @@ def main() -> None:
     parser.add_argument("--frame-indices", default="250,300,350")
     parser.add_argument(
         "--caption",
-        default="chair . table . sofa . cabinet . tv monitor . refrigerator . sink . stove .",
+        default="cabinet . chair . table . sofa . oven . refrigerator . washer . sink . tv monitor . stove .",
     )
     parser.add_argument("--box-threshold", type=float, default=0.25)
     parser.add_argument("--text-threshold", type=float, default=0.25)
     parser.add_argument("--min-mask-area", type=int, default=250)
     parser.add_argument("--association-distance-m", type=float, default=0.6)
-    parser.add_argument("--out", default="outputs/maps/41098076_semantic_map_demo.json")
+    parser.add_argument("--out", default="outputs/gt_aligned_10_label/maps/41098076_semantic_map_demo.json")
     args = parser.parse_args()
 
     scene = ARKitScenesAdapter(args.scene_dir)

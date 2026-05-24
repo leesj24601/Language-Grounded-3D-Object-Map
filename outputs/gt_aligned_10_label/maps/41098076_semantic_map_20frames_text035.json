@@ -1,0 +1,1234 @@
+{
+  "association_distance_m": 0.6,
+  "object_count": 28,
+  "objects": [
+    {
+      "object_id": "cabinet_001",
+      "label": "cabinet",
+      "centroid_m": [
+        0.3518,
+        1.4762,
+        1.3745
+      ],
+      "confidence_max": 0.5672,
+      "observation_count": 4,
+      "seen_frame_ids": [
+        "2579.405",
+        "2587.401",
+        "2591.400"
+      ],
+      "observations": [
+        {
+          "frame_id": "2579.405",
+          "source_label": "cabinet",
+          "confidence": 0.35402244329452515,
+          "centroid_m": [
+            0.2684,
+            1.4455,
+            1.4869
+          ],
+          "mask_area": 1784,
+          "box_xyxy": [
+            163.166,
+            64.832,
+            215.806,
+            191.858
+          ]
+        },
+        {
+          "frame_id": "2587.401",
+          "source_label": "cabinet",
+          "confidence": 0.3535429835319519,
+          "centroid_m": [
+            0.3304,
+            1.4704,
+            1.4517
+          ],
+          "mask_area": 18733,
+          "box_xyxy": [
+            100.737,
+            -0.385,
+            239.642,
+            163.787
+          ]
+        },
+        {
+          "frame_id": "2591.400",
+          "source_label": "cabinet",
+          "confidence": 0.567191481590271,
+          "centroid_m": [
+            0.4889,
+            1.4936,
+            1.3057
+          ],
+          "mask_area": 6612,
+          "box_xyxy": [
+            0.241,
+            -0.016,
+            74.474,
+            107.556
+          ]
+        },
+        {
+          "frame_id": "2591.400",
+          "source_label": "cabinet",
+          "confidence": 0.4468727707862854,
+          "centroid_m": [
+            0.3194,
+            1.4955,
+            1.2536
+          ],
+          "mask_area": 803,
+          "box_xyxy": [
+            -0.015,
+            -0.059,
+            12.901,
+            109.713
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "refrigerator_002",
+      "label": "refrigerator",
+      "centroid_m": [
+        0.4892,
+        1.4864,
+        1.5367
+      ],
+      "confidence_max": 0.3702,
+      "observation_count": 1,
+      "seen_frame_ids": [
+        "2579.405"
+      ],
+      "observations": [
+        {
+          "frame_id": "2579.405",
+          "source_label": "refrigerator",
+          "confidence": 0.37015488743782043,
+          "centroid_m": [
+            0.4892,
+            1.4864,
+            1.5367
+          ],
+          "mask_area": 4997,
+          "box_xyxy": [
+            202.43,
+            66.22,
+            255.985,
+            191.914
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "refrigerator_003",
+      "label": "refrigerator",
+      "centroid_m": [
+        0.3361,
+        0.6021,
+        1.4672
+      ],
+      "confidence_max": 0.6512,
+      "observation_count": 2,
+      "seen_frame_ids": [
+        "2583.403",
+        "2587.401"
+      ],
+      "observations": [
+        {
+          "frame_id": "2583.403",
+          "source_label": "refrigerator",
+          "confidence": 0.41275954246520996,
+          "centroid_m": [
+            0.339,
+            0.4633,
+            1.7129
+          ],
+          "mask_area": 14816,
+          "box_xyxy": [
+            0.018,
+            6.536,
+            119.183,
+            190.734
+          ]
+        },
+        {
+          "frame_id": "2587.401",
+          "source_label": "refrigerator",
+          "confidence": 0.651200532913208,
+          "centroid_m": [
+            0.3332,
+            0.7408,
+            1.2215
+          ],
+          "mask_area": 6430,
+          "box_xyxy": [
+            0.009,
+            64.088,
+            54.323,
+            191.998
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "table_004",
+      "label": "table",
+      "centroid_m": [
+        0.8838,
+        1.4692,
+        1.4273
+      ],
+      "confidence_max": 0.3972,
+      "observation_count": 1,
+      "seen_frame_ids": [
+        "2583.403"
+      ],
+      "observations": [
+        {
+          "frame_id": "2583.403",
+          "source_label": "table",
+          "confidence": 0.3971664309501648,
+          "centroid_m": [
+            0.8838,
+            1.4692,
+            1.4273
+          ],
+          "mask_area": 388,
+          "box_xyxy": [
+            222.014,
+            168.273,
+            256.007,
+            191.985
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "cabinet_005",
+      "label": "cabinet",
+      "centroid_m": [
+        0.3346,
+        0.7616,
+        1.5555
+      ],
+      "confidence_max": 0.3746,
+      "observation_count": 1,
+      "seen_frame_ids": [
+        "2587.401"
+      ],
+      "observations": [
+        {
+          "frame_id": "2587.401",
+          "source_label": "cabinet",
+          "confidence": 0.3746403455734253,
+          "centroid_m": [
+            0.3346,
+            0.7616,
+            1.5555
+          ],
+          "mask_area": 3545,
+          "box_xyxy": [
+            0.017,
+            -0.015,
+            68.251,
+            60.089
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "washer_006",
+      "label": "washer",
+      "centroid_m": [
+        1.8747,
+        1.511,
+        0.7017
+      ],
+      "confidence_max": 0.6924,
+      "observation_count": 2,
+      "seen_frame_ids": [
+        "2591.400",
+        "2595.398"
+      ],
+      "observations": [
+        {
+          "frame_id": "2591.400",
+          "source_label": "washer",
+          "confidence": 0.6923746466636658,
+          "centroid_m": [
+            1.8896,
+            1.5073,
+            0.7007
+          ],
+          "mask_area": 984,
+          "box_xyxy": [
+            209.24,
+            109.401,
+            251.069,
+            144.452
+          ]
+        },
+        {
+          "frame_id": "2595.398",
+          "source_label": "washer",
+          "confidence": 0.4649890959262848,
+          "centroid_m": [
+            1.8599,
+            1.5148,
+            0.7026
+          ],
+          "mask_area": 872,
+          "box_xyxy": [
+            115.313,
+            31.713,
+            152.237,
+            65.912
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "cabinet_007",
+      "label": "cabinet",
+      "centroid_m": [
+        1.6639,
+        1.486,
+        1.3645
+      ],
+      "confidence_max": 0.5308,
+      "observation_count": 1,
+      "seen_frame_ids": [
+        "2591.400"
+      ],
+      "observations": [
+        {
+          "frame_id": "2591.400",
+          "source_label": "cabinet",
+          "confidence": 0.5307874083518982,
+          "centroid_m": [
+            1.6639,
+            1.486,
+            1.3645
+          ],
+          "mask_area": 7077,
+          "box_xyxy": [
+            151.803,
+            -0.012,
+            256.001,
+            97.221
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "stove_008",
+      "label": "stove",
+      "centroid_m": [
+        1.0225,
+        1.4166,
+        0.5959
+      ],
+      "confidence_max": 0.8032,
+      "observation_count": 2,
+      "seen_frame_ids": [
+        "2591.400",
+        "2595.398"
+      ],
+      "observations": [
+        {
+          "frame_id": "2591.400",
+          "source_label": "stove",
+          "confidence": 0.8032296299934387,
+          "centroid_m": [
+            0.9962,
+            1.4347,
+            0.6003
+          ],
+          "mask_area": 2262,
+          "box_xyxy": [
+            83.211,
+            137.578,
+            176.532,
+            180.313
+          ]
+        },
+        {
+          "frame_id": "2595.398",
+          "source_label": "stove",
+          "confidence": 0.6360747218132019,
+          "centroid_m": [
+            1.0488,
+            1.3984,
+            0.5915
+          ],
+          "mask_area": 2320,
+          "box_xyxy": [
+            0.034,
+            65.05,
+            78.781,
+            108.42
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "cabinet_009",
+      "label": "cabinet",
+      "centroid_m": [
+        1.5957,
+        1.0156,
+        0.3649
+      ],
+      "confidence_max": 0.5866,
+      "observation_count": 3,
+      "seen_frame_ids": [
+        "2591.400",
+        "2595.398"
+      ],
+      "observations": [
+        {
+          "frame_id": "2591.400",
+          "source_label": "cabinet",
+          "confidence": 0.4342209994792938,
+          "centroid_m": [
+            1.6626,
+            1.0927,
+            0.5252
+          ],
+          "mask_area": 304,
+          "box_xyxy": [
+            234.244,
+            170.149,
+            256.004,
+            191.973
+          ]
+        },
+        {
+          "frame_id": "2595.398",
+          "source_label": "cabinet",
+          "confidence": 0.5866079330444336,
+          "centroid_m": [
+            1.4496,
+            1.2141,
+            0.2124
+          ],
+          "mask_area": 3924,
+          "box_xyxy": [
+            85.517,
+            85.815,
+            132.468,
+            191.911
+          ]
+        },
+        {
+          "frame_id": "2595.398",
+          "source_label": "cabinet",
+          "confidence": 0.5009500980377197,
+          "centroid_m": [
+            1.6749,
+            0.74,
+            0.3569
+          ],
+          "mask_area": 8605,
+          "box_xyxy": [
+            134.398,
+            85.467,
+            255.948,
+            191.967
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "oven_010",
+      "label": "oven",
+      "centroid_m": [
+        1.0315,
+        1.2114,
+        0.4872
+      ],
+      "confidence_max": 0.6091,
+      "observation_count": 1,
+      "seen_frame_ids": [
+        "2595.398"
+      ],
+      "observations": [
+        {
+          "frame_id": "2595.398",
+          "source_label": "oven",
+          "confidence": 0.6090644001960754,
+          "centroid_m": [
+            1.0315,
+            1.2114,
+            0.4872
+          ],
+          "mask_area": 1944,
+          "box_xyxy": [
+            0.038,
+            97.487,
+            91.24,
+            191.981
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "sink_011",
+      "label": "sink",
+      "centroid_m": [
+        2.1301,
+        0.0228,
+        0.4876
+      ],
+      "confidence_max": 0.6142,
+      "observation_count": 1,
+      "seen_frame_ids": [
+        "2599.413"
+      ],
+      "observations": [
+        {
+          "frame_id": "2599.413",
+          "source_label": "sink",
+          "confidence": 0.614220142364502,
+          "centroid_m": [
+            2.1301,
+            0.0228,
+            0.4876
+          ],
+          "mask_area": 1680,
+          "box_xyxy": [
+            120.307,
+            164.976,
+            200.243,
+            192.008
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "cabinet_012",
+      "label": "cabinet",
+      "centroid_m": [
+        1.9489,
+        -0.1859,
+        1.4081
+      ],
+      "confidence_max": 0.4157,
+      "observation_count": 2,
+      "seen_frame_ids": [
+        "2599.413",
+        "2603.412"
+      ],
+      "observations": [
+        {
+          "frame_id": "2599.413",
+          "source_label": "cabinet",
+          "confidence": 0.3550597131252289,
+          "centroid_m": [
+            1.946,
+            -0.0489,
+            1.3376
+          ],
+          "mask_area": 15343,
+          "box_xyxy": [
+            92.064,
+            -0.038,
+            255.882,
+            113.086
+          ]
+        },
+        {
+          "frame_id": "2603.412",
+          "source_label": "cabinet",
+          "confidence": 0.41566023230552673,
+          "centroid_m": [
+            1.9517,
+            -0.3229,
+            1.4785
+          ],
+          "mask_area": 25364,
+          "box_xyxy": [
+            17.73,
+            -0.159,
+            200.1,
+            157.929
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "refrigerator_013",
+      "label": "refrigerator",
+      "centroid_m": [
+        1.9459,
+        -0.5747,
+        1.5389
+      ],
+      "confidence_max": 0.6243,
+      "observation_count": 1,
+      "seen_frame_ids": [
+        "2607.410"
+      ],
+      "observations": [
+        {
+          "frame_id": "2607.410",
+          "source_label": "refrigerator",
+          "confidence": 0.6243304014205933,
+          "centroid_m": [
+            1.9459,
+            -0.5747,
+            1.5389
+          ],
+          "mask_area": 17821,
+          "box_xyxy": [
+            -0.012,
+            2.598,
+            110.282,
+            191.796
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "chair_014",
+      "label": "chair",
+      "centroid_m": [
+        0.4456,
+        -4.6649,
+        1.5051
+      ],
+      "confidence_max": 0.4664,
+      "observation_count": 1,
+      "seen_frame_ids": [
+        "2623.403"
+      ],
+      "observations": [
+        {
+          "frame_id": "2623.403",
+          "source_label": "chair",
+          "confidence": 0.46639901399612427,
+          "centroid_m": [
+            0.4456,
+            -4.6649,
+            1.5051
+          ],
+          "mask_area": 6661,
+          "box_xyxy": [
+            60.92,
+            118.729,
+            164.093,
+            191.994
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "chair_015",
+      "label": "chair",
+      "centroid_m": [
+        1.4391,
+        -4.673,
+        1.5359
+      ],
+      "confidence_max": 0.4066,
+      "observation_count": 1,
+      "seen_frame_ids": [
+        "2623.403"
+      ],
+      "observations": [
+        {
+          "frame_id": "2623.403",
+          "source_label": "chair",
+          "confidence": 0.40656328201293945,
+          "centroid_m": [
+            1.4391,
+            -4.673,
+            1.5359
+          ],
+          "mask_area": 1798,
+          "box_xyxy": [
+            0.019,
+            119.996,
+            31.58,
+            192.017
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "chair_016",
+      "label": "chair",
+      "centroid_m": [
+        -0.6509,
+        -4.644,
+        1.5331
+      ],
+      "confidence_max": 0.4361,
+      "observation_count": 1,
+      "seen_frame_ids": [
+        "2623.403"
+      ],
+      "observations": [
+        {
+          "frame_id": "2623.403",
+          "source_label": "chair",
+          "confidence": 0.43613100051879883,
+          "centroid_m": [
+            -0.6509,
+            -4.644,
+            1.5331
+          ],
+          "mask_area": 3467,
+          "box_xyxy": [
+            200.648,
+            122.339,
+            255.998,
+            192.011
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "tv_monitor_017",
+      "label": "tv_monitor",
+      "centroid_m": [
+        0.174,
+        -4.5921,
+        1.8195
+      ],
+      "confidence_max": 0.4406,
+      "observation_count": 1,
+      "seen_frame_ids": [
+        "2627.402"
+      ],
+      "observations": [
+        {
+          "frame_id": "2627.402",
+          "source_label": "tv monitor",
+          "confidence": 0.4405938386917114,
+          "centroid_m": [
+            0.174,
+            -4.5921,
+            1.8195
+          ],
+          "mask_area": 255,
+          "box_xyxy": [
+            0.022,
+            180.483,
+            36.69,
+            191.977
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "tv_monitor_018",
+      "label": "tv_monitor",
+      "centroid_m": [
+        -1.3837,
+        -4.1261,
+        1.6282
+      ],
+      "confidence_max": 0.4626,
+      "observation_count": 1,
+      "seen_frame_ids": [
+        "2631.400"
+      ],
+      "observations": [
+        {
+          "frame_id": "2631.400",
+          "source_label": "tv monitor",
+          "confidence": 0.4626257121562958,
+          "centroid_m": [
+            -1.3837,
+            -4.1261,
+            1.6282
+          ],
+          "mask_area": 7123,
+          "box_xyxy": [
+            0.0,
+            126.376,
+            122.517,
+            191.985
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "tv_monitor_019",
+      "label": "tv_monitor",
+      "centroid_m": [
+        -1.1074,
+        -2.6144,
+        0.5745
+      ],
+      "confidence_max": 0.8874,
+      "observation_count": 3,
+      "seen_frame_ids": [
+        "2635.398",
+        "2639.397",
+        "2643.412"
+      ],
+      "observations": [
+        {
+          "frame_id": "2635.398",
+          "source_label": "tv monitor",
+          "confidence": 0.8616405725479126,
+          "centroid_m": [
+            -1.1076,
+            -2.7697,
+            0.5532
+          ],
+          "mask_area": 9406,
+          "box_xyxy": [
+            125.985,
+            18.738,
+            256.126,
+            122.783
+          ]
+        },
+        {
+          "frame_id": "2639.397",
+          "source_label": "tv monitor",
+          "confidence": 0.8874185681343079,
+          "centroid_m": [
+            -1.1123,
+            -2.4258,
+            0.5198
+          ],
+          "mask_area": 3781,
+          "box_xyxy": [
+            0.012,
+            0.501,
+            59.867,
+            92.079
+          ]
+        },
+        {
+          "frame_id": "2643.412",
+          "source_label": "tv monitor",
+          "confidence": 0.8641574382781982,
+          "centroid_m": [
+            -1.1023,
+            -2.6476,
+            0.6504
+          ],
+          "mask_area": 1474,
+          "box_xyxy": [
+            0.008,
+            7.102,
+            51.674,
+            67.816
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "table_020",
+      "label": "table",
+      "centroid_m": [
+        -1.1376,
+        -2.7038,
+        -0.1049
+      ],
+      "confidence_max": 0.4027,
+      "observation_count": 1,
+      "seen_frame_ids": [
+        "2635.398"
+      ],
+      "observations": [
+        {
+          "frame_id": "2635.398",
+          "source_label": "cabinet table",
+          "confidence": 0.4026946425437927,
+          "centroid_m": [
+            -1.1376,
+            -2.7038,
+            -0.1049
+          ],
+          "mask_area": 6275,
+          "box_xyxy": [
+            112.646,
+            100.947,
+            255.93,
+            191.91
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "cabinet_021",
+      "label": "cabinet",
+      "centroid_m": [
+        -1.0904,
+        -2.52,
+        -0.0432
+      ],
+      "confidence_max": 0.3878,
+      "observation_count": 1,
+      "seen_frame_ids": [
+        "2639.397"
+      ],
+      "observations": [
+        {
+          "frame_id": "2639.397",
+          "source_label": "cabinet",
+          "confidence": 0.3877975642681122,
+          "centroid_m": [
+            -1.0904,
+            -2.52,
+            -0.0432
+          ],
+          "mask_area": 3925,
+          "box_xyxy": [
+            0.006,
+            74.138,
+            74.546,
+            148.501
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "table_022",
+      "label": "table",
+      "centroid_m": [
+        -1.0189,
+        -1.2156,
+        0.1108
+      ],
+      "confidence_max": 0.6087,
+      "observation_count": 3,
+      "seen_frame_ids": [
+        "2639.397",
+        "2643.412",
+        "2647.410"
+      ],
+      "observations": [
+        {
+          "frame_id": "2639.397",
+          "source_label": "table",
+          "confidence": 0.4031457304954529,
+          "centroid_m": [
+            -1.01,
+            -1.0274,
+            0.0433
+          ],
+          "mask_area": 3319,
+          "box_xyxy": [
+            127.195,
+            41.454,
+            255.98,
+            138.665
+          ]
+        },
+        {
+          "frame_id": "2643.412",
+          "source_label": "table",
+          "confidence": 0.3569220006465912,
+          "centroid_m": [
+            -1.266,
+            -1.5459,
+            0.1657
+          ],
+          "mask_area": 1885,
+          "box_xyxy": [
+            67.526,
+            58.647,
+            196.714,
+            147.596
+          ]
+        },
+        {
+          "frame_id": "2647.410",
+          "source_label": "table",
+          "confidence": 0.6087262630462646,
+          "centroid_m": [
+            -0.7806,
+            -1.0734,
+            0.1235
+          ],
+          "mask_area": 5422,
+          "box_xyxy": [
+            0.034,
+            46.843,
+            54.15,
+            191.906
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "chair_023",
+      "label": "chair",
+      "centroid_m": [
+        -0.5802,
+        -1.9442,
+        0.3277
+      ],
+      "confidence_max": 0.7216,
+      "observation_count": 2,
+      "seen_frame_ids": [
+        "2639.397",
+        "2643.412"
+      ],
+      "observations": [
+        {
+          "frame_id": "2639.397",
+          "source_label": "chair",
+          "confidence": 0.7215726375579834,
+          "centroid_m": [
+            -0.5411,
+            -1.9103,
+            0.1559
+          ],
+          "mask_area": 5258,
+          "box_xyxy": [
+            59.892,
+            25.637,
+            176.219,
+            190.415
+          ]
+        },
+        {
+          "frame_id": "2643.412",
+          "source_label": "chair",
+          "confidence": 0.6254296898841858,
+          "centroid_m": [
+            -0.6192,
+            -1.978,
+            0.4995
+          ],
+          "mask_area": 2349,
+          "box_xyxy": [
+            15.378,
+            27.402,
+            99.033,
+            163.023
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "chair_024",
+      "label": "chair",
+      "centroid_m": [
+        -1.194,
+        -1.2414,
+        0.5402
+      ],
+      "confidence_max": 0.4219,
+      "observation_count": 2,
+      "seen_frame_ids": [
+        "2639.397",
+        "2643.412"
+      ],
+      "observations": [
+        {
+          "frame_id": "2639.397",
+          "source_label": "chair",
+          "confidence": 0.35105347633361816,
+          "centroid_m": [
+            -1.1851,
+            -1.2599,
+            0.5331
+          ],
+          "mask_area": 2488,
+          "box_xyxy": [
+            156.993,
+            -0.035,
+            210.847,
+            139.09
+          ]
+        },
+        {
+          "frame_id": "2643.412",
+          "source_label": "chair",
+          "confidence": 0.4218820333480835,
+          "centroid_m": [
+            -1.2029,
+            -1.2229,
+            0.5473
+          ],
+          "mask_area": 1754,
+          "box_xyxy": [
+            123.753,
+            22.443,
+            177.746,
+            147.238
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "table_025",
+      "label": "table",
+      "centroid_m": [
+        -0.3165,
+        -1.3192,
+        0.183
+      ],
+      "confidence_max": 0.3541,
+      "observation_count": 1,
+      "seen_frame_ids": [
+        "2639.397"
+      ],
+      "observations": [
+        {
+          "frame_id": "2639.397",
+          "source_label": "table",
+          "confidence": 0.3541220724582672,
+          "centroid_m": [
+            -0.3165,
+            -1.3192,
+            0.183
+          ],
+          "mask_area": 5616,
+          "box_xyxy": [
+            126.989,
+            41.547,
+            256.042,
+            191.686
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "chair_026",
+      "label": "chair",
+      "centroid_m": [
+        0.1246,
+        -1.2135,
+        0.5186
+      ],
+      "confidence_max": 0.6471,
+      "observation_count": 1,
+      "seen_frame_ids": [
+        "2643.412"
+      ],
+      "observations": [
+        {
+          "frame_id": "2643.412",
+          "source_label": "chair",
+          "confidence": 0.6470832824707031,
+          "centroid_m": [
+            0.1246,
+            -1.2135,
+            0.5186
+          ],
+          "mask_area": 7836,
+          "box_xyxy": [
+            39.581,
+            92.8,
+            165.624,
+            192.017
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "chair_027",
+      "label": "chair",
+      "centroid_m": [
+        -0.6042,
+        -0.6125,
+        0.1755
+      ],
+      "confidence_max": 0.6913,
+      "observation_count": 3,
+      "seen_frame_ids": [
+        "2643.412",
+        "2647.410",
+        "2651.409"
+      ],
+      "observations": [
+        {
+          "frame_id": "2643.412",
+          "source_label": "chair",
+          "confidence": 0.6913476586341858,
+          "centroid_m": [
+            -0.6488,
+            -0.6539,
+            0.153
+          ],
+          "mask_area": 6973,
+          "box_xyxy": [
+            164.156,
+            62.505,
+            255.969,
+            191.899
+          ]
+        },
+        {
+          "frame_id": "2647.410",
+          "source_label": "chair",
+          "confidence": 0.4267118573188782,
+          "centroid_m": [
+            -0.5631,
+            -0.5994,
+            0.1887
+          ],
+          "mask_area": 11921,
+          "box_xyxy": [
+            44.81,
+            -0.009,
+            181.29,
+            191.991
+          ]
+        },
+        {
+          "frame_id": "2651.409",
+          "source_label": "chair",
+          "confidence": 0.4110318720340729,
+          "centroid_m": [
+            -0.6005,
+            -0.5842,
+            0.1847
+          ],
+          "mask_area": 10477,
+          "box_xyxy": [
+            5.921,
+            2.269,
+            112.965,
+            192.028
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "cabinet_028",
+      "label": "cabinet",
+      "centroid_m": [
+        -1.1174,
+        0.4586,
+        0.1007
+      ],
+      "confidence_max": 0.4228,
+      "observation_count": 1,
+      "seen_frame_ids": [
+        "2647.410"
+      ],
+      "observations": [
+        {
+          "frame_id": "2647.410",
+          "source_label": "cabinet",
+          "confidence": 0.42280203104019165,
+          "centroid_m": [
+            -1.1174,
+            0.4586,
+            0.1007
+          ],
+          "mask_area": 3664,
+          "box_xyxy": [
+            195.961,
+            -0.028,
+            255.986,
+            84.069
+          ]
+        }
+      ]
+    }
+  ]
+}

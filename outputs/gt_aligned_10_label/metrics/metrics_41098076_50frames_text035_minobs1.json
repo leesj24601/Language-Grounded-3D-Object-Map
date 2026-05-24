@@ -1,0 +1,753 @@
+{
+  "distance_threshold_m": 1.0,
+  "num_predictions": 45,
+  "num_gt": 30,
+  "num_matches": 22,
+  "precision": 0.4889,
+  "recall": 0.7333,
+  "mean_l2_m": 0.3072,
+  "median_l2_m": 0.284,
+  "duplicate_rate": 0.5111,
+  "matches": [
+    {
+      "label": "cabinet",
+      "prediction_id": "cabinet_018",
+      "gt_uid": "bEq8WXeJbw3IVdnl",
+      "distance_m": 0.1499,
+      "pred_centroid_m": [
+        1.9486,
+        -0.2294,
+        1.5529
+      ],
+      "gt_centroid_m": [
+        2.0888,
+        -0.281,
+        1.5647
+      ],
+      "observation_count": 3,
+      "confidence_max": 0.3983
+    },
+    {
+      "label": "cabinet",
+      "prediction_id": "cabinet_012",
+      "gt_uid": "OxGQ6xH7eRPpYXxW",
+      "distance_m": 0.2055,
+      "pred_centroid_m": [
+        0.4978,
+        1.4933,
+        1.4189
+      ],
+      "gt_centroid_m": [
+        0.5087,
+        1.6324,
+        1.5698
+      ],
+      "observation_count": 1,
+      "confidence_max": 0.5021
+    },
+    {
+      "label": "cabinet",
+      "prediction_id": "cabinet_013",
+      "gt_uid": "bfYpt8hMIdGvjldv",
+      "distance_m": 0.2488,
+      "pred_centroid_m": [
+        1.7229,
+        1.4497,
+        1.4985
+      ],
+      "gt_centroid_m": [
+        1.9561,
+        1.5009,
+        1.5686
+      ],
+      "observation_count": 1,
+      "confidence_max": 0.5074
+    },
+    {
+      "label": "cabinet",
+      "prediction_id": "cabinet_002",
+      "gt_uid": "p5Gz4favUAofqPQ0",
+      "distance_m": 0.3353,
+      "pred_centroid_m": [
+        0.5302,
+        1.1791,
+        0.2576
+      ],
+      "gt_centroid_m": [
+        0.5177,
+        1.4949,
+        0.1454
+      ],
+      "observation_count": 6,
+      "confidence_max": 0.6239
+    },
+    {
+      "label": "cabinet",
+      "prediction_id": "cabinet_008",
+      "gt_uid": "hDQkkqDzPFtgC4ZN",
+      "distance_m": 0.4017,
+      "pred_centroid_m": [
+        0.3367,
+        0.7424,
+        1.5506
+      ],
+      "gt_centroid_m": [
+        0.0668,
+        0.5702,
+        1.7932
+      ],
+      "observation_count": 1,
+      "confidence_max": 0.3675
+    },
+    {
+      "label": "cabinet",
+      "prediction_id": "cabinet_019",
+      "gt_uid": "V8VVpYIcKIyT2gNA",
+      "distance_m": 0.5363,
+      "pred_centroid_m": [
+        1.9142,
+        0.3142,
+        1.2099
+      ],
+      "gt_centroid_m": [
+        2.0558,
+        0.6906,
+        1.5647
+      ],
+      "observation_count": 2,
+      "confidence_max": 0.4992
+    },
+    {
+      "label": "cabinet",
+      "prediction_id": "cabinet_016",
+      "gt_uid": "jeit9zRP3tfxkQXn",
+      "distance_m": 0.5695,
+      "pred_centroid_m": [
+        1.6757,
+        0.0608,
+        0.427
+      ],
+      "gt_centroid_m": [
+        1.9514,
+        0.4708,
+        0.1439
+      ],
+      "observation_count": 3,
+      "confidence_max": 0.4606
+    },
+    {
+      "label": "cabinet",
+      "prediction_id": "cabinet_010",
+      "gt_uid": "bd9ozY2TYZmeYsmQ",
+      "distance_m": 0.5829,
+      "pred_centroid_m": [
+        1.5779,
+        0.9366,
+        0.2504
+      ],
+      "gt_centroid_m": [
+        1.4721,
+        1.5007,
+        0.1484
+      ],
+      "observation_count": 7,
+      "confidence_max": 0.5518
+    },
+    {
+      "label": "chair",
+      "prediction_id": "chair_040",
+      "gt_uid": "7B1xS8IGi8wV7jBW",
+      "distance_m": 0.2424,
+      "pred_centroid_m": [
+        -0.6285,
+        -0.5506,
+        0.4006
+      ],
+      "gt_centroid_m": [
+        -0.6506,
+        -0.6993,
+        0.2104
+      ],
+      "observation_count": 7,
+      "confidence_max": 0.7568
+    },
+    {
+      "label": "chair",
+      "prediction_id": "chair_042",
+      "gt_uid": "zLTUPqXbAf80FT2i",
+      "distance_m": 0.2571,
+      "pred_centroid_m": [
+        -1.1286,
+        -1.2123,
+        0.4354
+      ],
+      "gt_centroid_m": [
+        -1.0015,
+        -1.2345,
+        0.213
+      ],
+      "observation_count": 3,
+      "confidence_max": 0.5481
+    },
+    {
+      "label": "chair",
+      "prediction_id": "chair_038",
+      "gt_uid": "wQaBbUQ68Od3k2Wp",
+      "distance_m": 0.2823,
+      "pred_centroid_m": [
+        -0.5984,
+        -1.9732,
+        0.4262
+      ],
+      "gt_centroid_m": [
+        -0.6348,
+        -1.7978,
+        0.2081
+      ],
+      "observation_count": 5,
+      "confidence_max": 0.6919
+    },
+    {
+      "label": "chair",
+      "prediction_id": "chair_041",
+      "gt_uid": "UfzUOQaQwCFHA1Vu",
+      "distance_m": 0.414,
+      "pred_centroid_m": [
+        0.1281,
+        -1.2636,
+        0.5341
+      ],
+      "gt_centroid_m": [
+        -0.1304,
+        -1.2472,
+        0.2112
+      ],
+      "observation_count": 2,
+      "confidence_max": 0.655
+    },
+    {
+      "label": "oven",
+      "prediction_id": "oven_003",
+      "gt_uid": "nguxY7XLcKAJvcCK",
+      "distance_m": 0.3228,
+      "pred_centroid_m": [
+        0.8836,
+        1.2146,
+        0.3023
+      ],
+      "gt_centroid_m": [
+        0.9951,
+        1.4988,
+        0.1975
+      ],
+      "observation_count": 5,
+      "confidence_max": 0.4235
+    },
+    {
+      "label": "refrigerator",
+      "prediction_id": "refrigerator_004",
+      "gt_uid": "7LAXFKV5lyG9xlUZ",
+      "distance_m": 0.2278,
+      "pred_centroid_m": [
+        0.1146,
+        0.3786,
+        0.6831
+      ],
+      "gt_centroid_m": [
+        0.0716,
+        0.5682,
+        0.5644
+      ],
+      "observation_count": 4,
+      "confidence_max": 0.8672
+    },
+    {
+      "label": "sink",
+      "prediction_id": "sink_015",
+      "gt_uid": "mW7ZBVDmTMJop3q3",
+      "distance_m": 0.1572,
+      "pred_centroid_m": [
+        2.0843,
+        0.0666,
+        0.5193
+      ],
+      "gt_centroid_m": [
+        1.9389,
+        0.0075,
+        0.5281
+      ],
+      "observation_count": 5,
+      "confidence_max": 0.5004
+    },
+    {
+      "label": "sofa",
+      "prediction_id": "sofa_032",
+      "gt_uid": "sSIvF0rQeFbWjWq2",
+      "distance_m": 0.3201,
+      "pred_centroid_m": [
+        0.2684,
+        -4.2562,
+        0.342
+      ],
+      "gt_centroid_m": [
+        0.343,
+        -4.0854,
+        0.0818
+      ],
+      "observation_count": 1,
+      "confidence_max": 0.6994
+    },
+    {
+      "label": "sofa",
+      "prediction_id": "sofa_026",
+      "gt_uid": "0nDTFo8xYvHIyNX0",
+      "distance_m": 0.5274,
+      "pred_centroid_m": [
+        1.3403,
+        -2.9805,
+        0.1257
+      ],
+      "gt_centroid_m": [
+        1.7535,
+        -2.6549,
+        0.0882
+      ],
+      "observation_count": 4,
+      "confidence_max": 0.727
+    },
+    {
+      "label": "stove",
+      "prediction_id": "stove_001",
+      "gt_uid": "zSsL51IlLfrXyRTw",
+      "distance_m": 0.1097,
+      "pred_centroid_m": [
+        0.9359,
+        1.4603,
+        0.6071
+      ],
+      "gt_centroid_m": [
+        0.9951,
+        1.4987,
+        0.5231
+      ],
+      "observation_count": 5,
+      "confidence_max": 0.778
+    },
+    {
+      "label": "table",
+      "prediction_id": "table_037",
+      "gt_uid": "iUtcxCQBtbK38PxS",
+      "distance_m": 0.0881,
+      "pred_centroid_m": [
+        -1.1376,
+        -2.7038,
+        -0.1049
+      ],
+      "gt_centroid_m": [
+        -1.0845,
+        -2.7463,
+        -0.0488
+      ],
+      "observation_count": 1,
+      "confidence_max": 0.4027
+    },
+    {
+      "label": "table",
+      "prediction_id": "table_029",
+      "gt_uid": "1Y5RckqW2Eid2g2j",
+      "distance_m": 0.2857,
+      "pred_centroid_m": [
+        1.8818,
+        -4.2845,
+        -0.0387
+      ],
+      "gt_centroid_m": [
+        2.1103,
+        -4.3932,
+        -0.1715
+      ],
+      "observation_count": 4,
+      "confidence_max": 0.4453
+    },
+    {
+      "label": "tv_monitor",
+      "prediction_id": "tv_monitor_035",
+      "gt_uid": "XtHf8vNSH0jM4iWh",
+      "distance_m": 0.1272,
+      "pred_centroid_m": [
+        -1.1132,
+        -2.6502,
+        0.5653
+      ],
+      "gt_centroid_m": [
+        -1.1226,
+        -2.7439,
+        0.4798
+      ],
+      "observation_count": 6,
+      "confidence_max": 0.8697
+    },
+    {
+      "label": "washer",
+      "prediction_id": "washer_021",
+      "gt_uid": "2dFzANOySBKO9HJD",
+      "distance_m": 0.3663,
+      "pred_centroid_m": [
+        1.6608,
+        -0.5461,
+        0.3829
+      ],
+      "gt_centroid_m": [
+        1.9368,
+        -0.5656,
+        0.143
+      ],
+      "observation_count": 2,
+      "confidence_max": 0.6936
+    }
+  ],
+  "unmatched_predictions": [
+    {
+      "object_id": "cabinet_020",
+      "label": "cabinet",
+      "centroid_m": [
+        1.6995,
+        -0.5381,
+        0.5095
+      ],
+      "observation_count": 1,
+      "confidence_max": 0.3687
+    },
+    {
+      "object_id": "cabinet_036",
+      "label": "cabinet",
+      "centroid_m": [
+        -1.0635,
+        -2.7393,
+        -0.0172
+      ],
+      "observation_count": 3,
+      "confidence_max": 0.56
+    },
+    {
+      "object_id": "cabinet_043",
+      "label": "cabinet",
+      "centroid_m": [
+        -1.075,
+        2.369,
+        0.7676
+      ],
+      "observation_count": 1,
+      "confidence_max": 0.3545
+    },
+    {
+      "object_id": "chair_024",
+      "label": "chair",
+      "centroid_m": [
+        2.2207,
+        -2.5264,
+        1.6109
+      ],
+      "observation_count": 1,
+      "confidence_max": 0.3687
+    },
+    {
+      "object_id": "chair_027",
+      "label": "chair",
+      "centroid_m": [
+        0.8525,
+        -3.6271,
+        0.1258
+      ],
+      "observation_count": 1,
+      "confidence_max": 0.3769
+    },
+    {
+      "object_id": "refrigerator_005",
+      "label": "refrigerator",
+      "centroid_m": [
+        0.1488,
+        0.2707,
+        1.8107
+      ],
+      "observation_count": 1,
+      "confidence_max": 0.5002
+    },
+    {
+      "object_id": "refrigerator_017",
+      "label": "refrigerator",
+      "centroid_m": [
+        1.8912,
+        0.6626,
+        1.5485
+      ],
+      "observation_count": 1,
+      "confidence_max": 0.4339
+    },
+    {
+      "object_id": "refrigerator_023",
+      "label": "refrigerator",
+      "centroid_m": [
+        1.9438,
+        -0.5902,
+        1.6923
+      ],
+      "observation_count": 1,
+      "confidence_max": 0.405
+    },
+    {
+      "object_id": "sink_006",
+      "label": "sink",
+      "centroid_m": [
+        0.8725,
+        1.2663,
+        0.6479
+      ],
+      "observation_count": 1,
+      "confidence_max": 0.4115
+    },
+    {
+      "object_id": "sofa_022",
+      "label": "sofa",
+      "centroid_m": [
+        1.5765,
+        -1.8639,
+        0.161
+      ],
+      "observation_count": 2,
+      "confidence_max": 0.6942
+    },
+    {
+      "object_id": "sofa_030",
+      "label": "sofa",
+      "centroid_m": [
+        0.5816,
+        -3.704,
+        0.1488
+      ],
+      "observation_count": 3,
+      "confidence_max": 0.6259
+    },
+    {
+      "object_id": "table_014",
+      "label": "table",
+      "centroid_m": [
+        1.8092,
+        1.6712,
+        0.4973
+      ],
+      "observation_count": 1,
+      "confidence_max": 0.3623
+    },
+    {
+      "object_id": "table_039",
+      "label": "table",
+      "centroid_m": [
+        -1.047,
+        -1.5543,
+        0.1993
+      ],
+      "observation_count": 5,
+      "confidence_max": 0.6794
+    },
+    {
+      "object_id": "table_045",
+      "label": "table",
+      "centroid_m": [
+        0.0087,
+        -0.071,
+        -0.2858
+      ],
+      "observation_count": 1,
+      "confidence_max": 0.4078
+    },
+    {
+      "object_id": "tv_monitor_028",
+      "label": "tv_monitor",
+      "centroid_m": [
+        1.4993,
+        -4.6331,
+        0.366
+      ],
+      "observation_count": 2,
+      "confidence_max": 0.4036
+    },
+    {
+      "object_id": "tv_monitor_031",
+      "label": "tv_monitor",
+      "centroid_m": [
+        2.246,
+        -2.9997,
+        1.5368
+      ],
+      "observation_count": 1,
+      "confidence_max": 0.5429
+    },
+    {
+      "object_id": "tv_monitor_033",
+      "label": "tv_monitor",
+      "centroid_m": [
+        -1.3974,
+        -4.0613,
+        1.5377
+      ],
+      "observation_count": 1,
+      "confidence_max": 0.3529
+    },
+    {
+      "object_id": "tv_monitor_044",
+      "label": "tv_monitor",
+      "centroid_m": [
+        0.1294,
+        -0.0084,
+        -0.2872
+      ],
+      "observation_count": 2,
+      "confidence_max": 0.8062
+    },
+    {
+      "object_id": "washer_007",
+      "label": "washer",
+      "centroid_m": [
+        0.3322,
+        0.7268,
+        1.2346
+      ],
+      "observation_count": 1,
+      "confidence_max": 0.7558
+    },
+    {
+      "object_id": "washer_009",
+      "label": "washer",
+      "centroid_m": [
+        0.0572,
+        1.1552,
+        0.7434
+      ],
+      "observation_count": 1,
+      "confidence_max": 0.5586
+    },
+    {
+      "object_id": "washer_011",
+      "label": "washer",
+      "centroid_m": [
+        1.8858,
+        1.545,
+        0.6776
+      ],
+      "observation_count": 2,
+      "confidence_max": 0.5768
+    },
+    {
+      "object_id": "washer_025",
+      "label": "washer",
+      "centroid_m": [
+        1.9165,
+        -1.2799,
+        0.1003
+      ],
+      "observation_count": 2,
+      "confidence_max": 0.4744
+    },
+    {
+      "object_id": "washer_034",
+      "label": "washer",
+      "centroid_m": [
+        -1.3974,
+        -4.0613,
+        1.5377
+      ],
+      "observation_count": 1,
+      "confidence_max": 0.3662
+    }
+  ],
+  "unmatched_gt": [
+    {
+      "uid": "2Lm1w8HgLvO1TZ5Y",
+      "label": "cabinet",
+      "centroid_m": [
+        0.0634,
+        1.0323,
+        0.1536
+      ]
+    },
+    {
+      "uid": "rijuWRbihOjh3se2",
+      "label": "cabinet",
+      "centroid_m": [
+        1.4882,
+        1.6389,
+        1.5806
+      ]
+    },
+    {
+      "uid": "uzxhfyMV1RW1VVBu",
+      "label": "cabinet",
+      "centroid_m": [
+        2.0941,
+        1.1088,
+        1.5694
+      ]
+    },
+    {
+      "uid": "q1btifUcuzJDt3b3",
+      "label": "cabinet",
+      "centroid_m": [
+        0.0597,
+        1.4842,
+        1.5725
+      ]
+    },
+    {
+      "uid": "MATff5spd0TZteEj",
+      "label": "cabinet",
+      "centroid_m": [
+        -0.0645,
+        1.0556,
+        1.5746
+      ]
+    },
+    {
+      "uid": "GWywrYtm13psLH73",
+      "label": "cabinet",
+      "centroid_m": [
+        0.9951,
+        1.4988,
+        -0.1773
+      ]
+    },
+    {
+      "uid": "CWIRjWSoqRNGiV71",
+      "label": "table",
+      "centroid_m": [
+        2.0538,
+        -1.5897,
+        -0.0861
+      ]
+    },
+    {
+      "uid": "L5uxWEFoZyP3NRFL",
+      "label": "table",
+      "centroid_m": [
+        0.6609,
+        -2.7318,
+        -0.1093
+      ]
+    }
+  ],
+  "scene_id": "41098076",
+  "map_path": "outputs/gt_aligned_10_label/maps/41098076_semantic_map_50frames_text035.json",
+  "min_observations": 1,
+  "labels": [
+    "cabinet",
+    "chair",
+    "oven",
+    "refrigerator",
+    "sink",
+    "sofa",
+    "stove",
+    "table",
+    "tv_monitor",
+    "washer"
+  ]
+}

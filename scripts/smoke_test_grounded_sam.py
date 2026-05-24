@@ -96,7 +96,7 @@ def main() -> None:
     parser.add_argument("--caption", default="chair . table . sofa . couch .")
     parser.add_argument("--box-threshold", type=float, default=0.25)
     parser.add_argument("--text-threshold", type=float, default=0.25)
-    parser.add_argument("--out-dir", default="outputs/figures")
+    parser.add_argument("--out-dir", default="outputs/gt_aligned_10_label/figures")
     parser.add_argument("--prefix", default="room")
     args = parser.parse_args()
 

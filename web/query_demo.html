@@ -458,11 +458,12 @@
         </form>
         <div class="controls">
           <label>
-            신뢰도 필터
+            관측 수 필터
             <select id="minObs">
               <option value="1">obs >= 1</option>
               <option value="2">obs >= 2</option>
-              <option value="3" selected>obs >= 3</option>
+              <option value="3">obs >= 3</option>
+              <option value="4" selected>obs >= 4</option>
               <option value="5">obs >= 5</option>
               <option value="8">obs >= 8</option>
               <option value="10">obs >= 10</option>
@@ -473,7 +474,7 @@
             <button type="button" data-map-mode="gt">정답</button>
             <button type="button" data-map-mode="both">비교</button>
           </span>
-          <span>기본값은 대표 실험 설정인 observation_count >= 3입니다.</span>
+          <span>기본값은 대표 실험 설정인 observation_count >= 4입니다.</span>
         </div>
         <div class="examples" id="examples"></div>
         <div class="guide">
@@ -484,9 +485,9 @@
           <section class="guide-box">
             <h2>질문 예시</h2>
             <ul class="guide-list">
-              <li>위치: <strong>의자 어딨어?</strong>, <strong>냉장고 위치</strong></li>
-              <li>개수: <strong>chair 몇 개야?</strong>, <strong>table count</strong></li>
-              <li>가까운 객체: <strong>가장 가까운 TV</strong></li>
+              <li>위치: <strong>의자 어딨어?</strong>, <strong>냉장고 위치</strong>, <strong>오븐 위치</strong></li>
+              <li>개수: <strong>chair 몇 개야?</strong>, <strong>washer count</strong></li>
+              <li>가까운 객체: <strong>가장 가까운 TV</strong>, <strong>nearest washer</strong></li>
               <li>지도에서 기준점을 클릭하면 nearest 기준이 바뀝니다.</li>
             </ul>
           </section>
@@ -499,7 +500,7 @@
     </main>
 
     <script>
-      const MAP_PATH = "../outputs/maps/41098076_semantic_map_100frames_text035.json";
+      const MAP_PATH = "../outputs/gt_aligned_10_label/maps/41098076_semantic_map_100frames_text035.json";
       const GT_PATH = "../data/arkitscenes/3dod/Training/41098076/41098076_3dod_annotation.json";
       const labelAliases = new Map([
         ["chair", "chair"],
@@ -528,9 +529,20 @@
         ["냉장고", "refrigerator"],
         ["refrigerator", "refrigerator"],
         ["fridge", "refrigerator"],
+        ["oven", "oven"],
+        ["오븐", "oven"],
+        ["washer", "washer"],
+        ["세탁기", "washer"],
       ]);
 
-      const examples = ["의자 어딨어?", "chair 몇 개야?", "가장 가까운 TV", "냉장고 위치", "sofa location"];
+      const examples = ["의자 어딨어?", "washer count", "가장 가까운 TV", "오븐 위치", "sofa location"];
+      const evalMetricsByMinObs = new Map([
+        [1, { predictions: 56, matches: 21, precision: 0.375, recall: 0.7 }],
+        [2, { predictions: 35, matches: 21, precision: 0.6, recall: 0.7 }],
+        [3, { predictions: 29, matches: 21, precision: 0.7241, recall: 0.7 }],
+        [4, { predictions: 25, matches: 21, precision: 0.84, recall: 0.7 }],
+        [5, { predictions: 22, matches: 19, precision: 0.8636, recall: 0.6333 }],
+      ]);
       let semanticObjects = [];
       let gtObjects = [];
       let mapMode = "pred";
@@ -605,11 +617,13 @@
           cabinet: "#2563eb",
           chair: "#dc2626",
           refrigerator: "#0891b2",
+          oven: "#be123c",
           sink: "#0f766e",
           sofa: "#7c3aed",
           stove: "#ea580c",
           table: "#ca8a04",
           tv_monitor: "#475569",
+          washer: "#0284c7",
         };
         return colors[label] ?? "#64748b";
       }
@@ -771,7 +785,7 @@
             <div class="answer-header">
               <div>
                 <h2 class="answer-title">지원하는 객체 label을 찾지 못했습니다.</h2>
-                <p class="subtle">현재 demo는 chair, table, sofa, cabinet, tv monitor, refrigerator, sink, stove를 지원합니다.</p>
+                <p class="subtle">현재 demo는 cabinet, chair, table, sofa, oven, refrigerator, washer, sink, tv monitor, stove를 지원합니다.</p>
               </div>
             </div>
           `;
@@ -876,7 +890,11 @@
 
       function updateStatus(minObs = Number(minObsSelect.value)) {
         const shownPredictions = semanticObjects.filter((obj) => obj.observation_count >= minObs).length;
-        statusEl.textContent = `prediction 표시 ${shownPredictions}/${semanticObjects.length} · GT ${gtObjects.length}`;
+        const evalMetrics = evalMetricsByMinObs.get(minObs);
+        const evalText = evalMetrics
+          ? ` · eval match ${evalMetrics.matches}/${gtObjects.length} · P ${(evalMetrics.precision * 100).toFixed(2)}% · R ${(evalMetrics.recall * 100).toFixed(2)}%`
+          : "";
+        statusEl.textContent = `prediction 후보 ${shownPredictions}/${semanticObjects.length} · GT ${gtObjects.length}${evalText}`;
         renderLabelGuide(minObs);
       }
 

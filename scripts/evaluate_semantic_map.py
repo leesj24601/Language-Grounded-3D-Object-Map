@@ -18,8 +18,11 @@ from src.evaluator import ObjectGroundTruth, load_predictions, match_by_label
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--scene-dir", default="data/arkitscenes/3dod/Training/41098076")
-    parser.add_argument("--map", default="outputs/maps/41098076_semantic_map_20frames_text035.json")
-    parser.add_argument("--out", default="outputs/metrics_41098076_text035.json")
+    parser.add_argument(
+        "--map",
+        default="outputs/gt_aligned_10_label/maps/41098076_semantic_map_20frames_text035.json",
+    )
+    parser.add_argument("--out", default="outputs/gt_aligned_10_label/metrics/metrics_41098076_text035.json")
     parser.add_argument("--distance-threshold-m", type=float, default=1.0)
     parser.add_argument("--min-observations", type=int, default=1)
     parser.add_argument(

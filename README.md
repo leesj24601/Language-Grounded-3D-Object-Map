@@ -1,7 +1,7 @@
 <div align="center">
   <h1>Language-Grounded 3D Object Map</h1>
   <a href="README.ko.md">
-    <img src="https://img.shields.io/badge/README-KO%20%E2%86%90%20click%21-111827?style=for-the-badge" height="64" alt="Korean README">
+    <img src="https://img.shields.io/badge/README-KO%20%E2%86%90%20click%21-111827?style=for-the-badge" height="42" alt="Korean README">
   </a>
   <br><br>
   <img src="https://img.shields.io/badge/Python-3.11-3776AB?style=flat&logo=python&logoColor=white" alt="Python 3.11">
@@ -103,7 +103,7 @@ flowchart TB
   - Centroid-based object association.
 - [x] **Phase 5: Evaluation**
   - Centroid-based precision, recall, localization error, duplicate rate.
-  - 20-frame, 50-frame, 100-frame, and keyframe ablations.
+  - GT-aligned 10-label evaluation with 20-frame, 50-frame, 100-frame, 200-frame, threshold, and association-distance ablations.
 - [x] **Phase 6: Browser Query Demo**
   - Search UI for location/count/nearest queries.
   - Top-down prediction/GT map toggle.
@@ -192,7 +192,8 @@ language-grounded-3d-object-map/
 │   ├── serve_query_demo.py          # Browser demo server
 │   └── verify_projector.py          # Projection sanity test
 ├── docs/
-│   ├── EXPERIMENT_LOG.md            # Detailed experiments and notes
+│   ├── EXPERIMENT_LOG.md            # Earlier 8-label experiments and notes
+│   ├── EXPERIMENT_LOG_GT_ALIGNED.md # GT-aligned 10-label experiment log
 │   ├── PROJECT_PLAN.md              # Project plan
 │   └── PROGRESS.md                  # Development progress log
 ├── src/
@@ -221,13 +222,13 @@ conda run -n cv python scripts/build_semantic_map_demo.py \
   --frame-indices "0,8,16,24,32,40,48,56,64,72,80,88,96,104,112,120,128,137,145,153,161,169,177,185,193,201,209,217,225,233,241,249,257,265,273,281,289,297,305,313,321,329,337,345,353,361,369,377,385,393,402,410,418,426,434,442,450,458,466,474,482,490,498,506,514,522,530,538,546,554,562,570,578,586,594,602,610,618,626,634,642,650,658,667,675,683,691,699,707,715,723,731,739,747,755,763,771,779,787,795" \
   --box-threshold 0.25 \
   --text-threshold 0.35 \
-  --out outputs/maps/41098076_semantic_map_100frames_text035.json
+  --out outputs/gt_aligned_10_label/maps/41098076_semantic_map_100frames_text035.json
 ```
 
 Generated semantic map JSON:
 
 ```text
-outputs/maps/41098076_semantic_map_100frames_text035.json
+outputs/gt_aligned_10_label/maps/41098076_semantic_map_100frames_text035.json
 ```
 
 ### 2. Evaluate the Semantic Map
@@ -237,18 +238,18 @@ Specify the prediction map to evaluate with `--map`.
 ```bash
 conda run -n cv python scripts/evaluate_semantic_map.py \
   --scene-dir data/arkitscenes/3dod/Training/41098076 \
-  --map outputs/maps/41098076_semantic_map_100frames_text035.json \
-  --min-observations 3 \
-  --out outputs/metrics_41098076_100frames_text035_minobs3.json
+  --map outputs/gt_aligned_10_label/maps/41098076_semantic_map_100frames_text035.json \
+  --min-observations 4 \
+  --out outputs/gt_aligned_10_label/metrics/metrics_41098076_100frames_text035_minobs4.json
 ```
 
 ### 3. Run the Web Query Demo
 
 The web demo loads the JSON configured by `MAP_PATH` in `web/query_demo.html`.
-Current default:
+For the representative GT-aligned result, use:
 
 ```text
-../outputs/maps/41098076_semantic_map_100frames_text035.json
+../outputs/gt_aligned_10_label/maps/41098076_semantic_map_100frames_text035.json
 ```
 
 ```bash
@@ -300,14 +301,14 @@ Representative result:
 
 | Metric | Value |
 | --- | ---: |
-| **Precision@1m** | **70.37%** |
-| **Recall@1m** | **63.33%** |
+| **Precision@1m** | **84.00%** |
+| **Recall@1m** | **70.00%** |
 
 Additional metrics:
 
-- Predictions / GT / matches: 27 / 30 / 19
-- Mean / median L2 error: 31.13cm / 29.82cm
-- Duplicate rate: 29.63%
+- Predictions / GT / matches: 25 / 30 / 21
+- Mean / median L2 error: 31.11cm / 32.51cm
+- Duplicate rate: 16.00%
 
 Setting:
 
@@ -315,11 +316,13 @@ Setting:
 - Frames: 100 uniformly sampled frames
 - Model stack: Grounding DINO Swin-T OGC + SAM ViT-B
 - Thresholds: `box_threshold=0.25`, `text_threshold=0.35`
-- Filter: `observation_count >= 3`
+- Object association: `association_distance_m=0.6`
+- Filter: `observation_count >= 4`
+- GT-aligned prompt labels: `cabinet`, `chair`, `table`, `sofa`, `oven`, `refrigerator`, `washer`, `sink`, `tv_monitor`, `stove`
 
-The 224 pose-keyframe experiment improved raw recall but increased duplicate candidates. The 100-frame setting is currently the best balanced representative result.
+The 200-frame scaling experiment matched one more GT object (`22` matches, `73.33%` recall), but it also reduced precision to `75.86%` and increased duplicate/unmatched predictions to `24.14%`. The 100-frame setting is the representative result because it keeps nearly the same recall with substantially better precision and fewer duplicate candidates.
 
-See [docs/EXPERIMENT_LOG.md](docs/EXPERIMENT_LOG.md) for full ablations and research-context notes.
+See [docs/EXPERIMENT_LOG_GT_ALIGNED.md](docs/EXPERIMENT_LOG_GT_ALIGNED.md) for the current GT-aligned ablations and [docs/EXPERIMENT_LOG.md](docs/EXPERIMENT_LOG.md) for the earlier 8-label experiments.
 
 ---
 

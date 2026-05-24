@@ -41,9 +41,19 @@ models/
 
 # Generated experiment outputs
 outputs/*
-!outputs/maps/
-outputs/maps/*
-!outputs/maps/41098076_semantic_map_100frames_text035.json
+!outputs/old_8_label/
+outputs/old_8_label/*
+!outputs/old_8_label/maps/
+outputs/old_8_label/maps/*
+!outputs/old_8_label/maps/41098076_semantic_map_100frames_text035.json
+!outputs/gt_aligned_10_label/
+outputs/gt_aligned_10_label/*
+!outputs/gt_aligned_10_label/maps/
+!outputs/gt_aligned_10_label/metrics/
+outputs/gt_aligned_10_label/maps/*
+outputs/gt_aligned_10_label/metrics/*
+!outputs/gt_aligned_10_label/maps/*.json
+!outputs/gt_aligned_10_label/metrics/*.json
 
 # Local OS/editor files
 .DS_Store

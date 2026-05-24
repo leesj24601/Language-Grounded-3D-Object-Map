@@ -114,7 +114,7 @@ duplicate_rate: 0.1250
 ### 20프레임, text_threshold=0.25
 
 - Frame index: `0,40,80,120,160,200,240,280,320,360,400,440,480,520,560,600,640,680,720,760`
-- Map: `outputs/maps/41098076_semantic_map_20frames.json`
+- Map: `outputs/old_8_label/maps/41098076_semantic_map_20frames.json`
 - `box_threshold`: 0.25
 - `text_threshold`: 0.25
 - Object count: 40
@@ -139,7 +139,7 @@ sink 2
 ### 20프레임, text_threshold=0.35
 
 - Frame index: 위와 동일
-- Map: `outputs/maps/41098076_semantic_map_20frames_text035.json`
+- Map: `outputs/old_8_label/maps/41098076_semantic_map_20frames_text035.json`
 - `box_threshold`: 0.25
 - `text_threshold`: 0.35
 - Object count: 25
@@ -166,7 +166,7 @@ sink 1
 
 ### 20프레임, text_threshold=0.35, observation_count >= 1
 
-- Metrics: `outputs/metrics_41098076_text035_minobs1.json`
+- Metrics: `outputs/old_8_label/metrics/metrics_41098076_text035_minobs1.json`
 
 ```text
 predictions: 25
@@ -181,7 +181,7 @@ duplicate_rate: 0.4800
 
 ### 20프레임, text_threshold=0.35, observation_count >= 2
 
-- Metrics: `outputs/metrics_41098076_text035_minobs2.json`
+- Metrics: `outputs/old_8_label/metrics/metrics_41098076_text035_minobs2.json`
 
 ```text
 predictions: 11
@@ -201,8 +201,8 @@ duplicate_rate: 0.1818
 
 ### 50프레임, text_threshold=0.35, observation_count >= 1
 
-- Map: `outputs/maps/41098076_semantic_map_50frames_text035.json`
-- Metrics: `outputs/metrics_41098076_50frames_text035_minobs1.json`
+- Map: `outputs/old_8_label/maps/41098076_semantic_map_50frames_text035.json`
+- Metrics: `outputs/old_8_label/metrics/metrics_41098076_50frames_text035_minobs1.json`
 
 ```text
 predictions: 41
@@ -217,7 +217,7 @@ duplicate_rate: 0.5122
 
 ### 50프레임, text_threshold=0.35, observation_count >= 2
 
-- Metrics: `outputs/metrics_41098076_50frames_text035_minobs2.json`
+- Metrics: `outputs/old_8_label/metrics/metrics_41098076_50frames_text035_minobs2.json`
 
 ```text
 predictions: 22
@@ -232,7 +232,7 @@ duplicate_rate: 0.2727
 
 ### 50프레임, text_threshold=0.35, observation_count >= 3
 
-- Metrics: `outputs/metrics_41098076_50frames_text035_minobs3.json`
+- Metrics: `outputs/old_8_label/metrics/metrics_41098076_50frames_text035_minobs3.json`
 
 ```text
 predictions: 16
@@ -254,8 +254,8 @@ duplicate_rate: 0.1250
 
 ### 100프레임, text_threshold=0.35, observation_count >= 1
 
-- Map: `outputs/maps/41098076_semantic_map_100frames_text035.json`
-- Metrics: `outputs/metrics_41098076_100frames_text035_minobs1.json`
+- Map: `outputs/old_8_label/maps/41098076_semantic_map_100frames_text035.json`
+- Metrics: `outputs/old_8_label/metrics/metrics_41098076_100frames_text035_minobs1.json`
 
 ```text
 predictions: 55
@@ -270,7 +270,7 @@ duplicate_rate: 0.6364
 
 ### 100프레임, text_threshold=0.35, observation_count >= 2
 
-- Metrics: `outputs/metrics_41098076_100frames_text035_minobs2.json`
+- Metrics: `outputs/old_8_label/metrics/metrics_41098076_100frames_text035_minobs2.json`
 
 ```text
 predictions: 33
@@ -285,7 +285,7 @@ duplicate_rate: 0.4242
 
 ### 100프레임, text_threshold=0.35, observation_count >= 3
 
-- Metrics: `outputs/metrics_41098076_100frames_text035_minobs3.json`
+- Metrics: `outputs/old_8_label/metrics/metrics_41098076_100frames_text035_minobs3.json`
 
 ```text
 predictions: 27
@@ -310,14 +310,14 @@ duplicate_rate: 0.2963
 
 - Keyframe 기준: camera translation이 직전 선택 keyframe 대비 `0.10m` 이상일 때 선택
 - 선택 frame 수: 224장
-- Map: `outputs/maps/41098076_semantic_map_keyframes_t010_text035.json`
+- Map: `outputs/old_8_label/maps/41098076_semantic_map_keyframes_t010_text035.json`
 - `box_threshold`: 0.25
 - `text_threshold`: 0.35
 - Object count: 69
 
 `observation_count >= 1`:
 
-- Metrics: `outputs/metrics_41098076_keyframes_t010_text035_minobs1.json`
+- Metrics: `outputs/old_8_label/metrics/metrics_41098076_keyframes_t010_text035_minobs1.json`
 
 ```text
 predictions: 69
@@ -332,7 +332,7 @@ duplicate_rate: 0.6812
 
 `observation_count >= 3`:
 
-- Metrics: `outputs/metrics_41098076_keyframes_t010_text035_minobs3.json`
+- Metrics: `outputs/old_8_label/metrics/metrics_41098076_keyframes_t010_text035_minobs3.json`
 
 ```text
 predictions: 45
@@ -347,7 +347,7 @@ duplicate_rate: 0.5333
 
 `observation_count >= 6`:
 
-- Metrics: `outputs/metrics_41098076_keyframes_t010_text035_minobs6.json`
+- Metrics: `outputs/old_8_label/metrics/metrics_41098076_keyframes_t010_text035_minobs6.json`
 
 ```text
 predictions: 28
@@ -362,7 +362,7 @@ duplicate_rate: 0.3214
 
 `observation_count >= 8`:
 
-- Metrics: `outputs/metrics_41098076_keyframes_t010_text035_minobs8.json`
+- Metrics: `outputs/old_8_label/metrics/metrics_41098076_keyframes_t010_text035_minobs8.json`
 
 ```text
 predictions: 24
@@ -377,7 +377,7 @@ duplicate_rate: 0.2500
 
 `observation_count >= 10`:
 
-- Metrics: `outputs/metrics_41098076_keyframes_t010_text035_minobs10.json`
+- Metrics: `outputs/old_8_label/metrics/metrics_41098076_keyframes_t010_text035_minobs10.json`
 
 ```text
 predictions: 21
