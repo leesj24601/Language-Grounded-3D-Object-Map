@@ -103,7 +103,7 @@ flowchart TB
   - Centroid-based object association.
 - [x] **Phase 5: Evaluation**
   - Centroid-based precision, recall, localization error, duplicate rate.
-  - GT-aligned 10-label 기준 20-frame, 50-frame, 100-frame, 200-frame, threshold, association-distance ablations.
+  - GT-aligned 10-label 기준 threshold 및 association-distance ablations.
 - [x] **Phase 6: Browser Query Demo**
   - Location/count/nearest query를 위한 search UI.
   - Prediction/GT top-down map toggle.
@@ -149,6 +149,8 @@ flowchart TB
    pip install groundingdino-py segment-anything
    ```
 
+   아직 pinned dependency lockfile은 없으므로, 이 섹션을 prototype 환경에서 확인한 package set으로 본다.
+
 ---
 
 ## Data & Model Weights
@@ -175,6 +177,17 @@ data/arkitscenes/3dod/Training/41098076/
 
 Experiment scene: ARKitScenes 3DOD `41098076`.
 
+Bundled ARKitScenes helper로 scene data를 받을 수 있다:
+
+```bash
+conda run -n cv python scripts/download_data.py 3dod \
+  --split Training \
+  --video_id 41098076 \
+  --download_dir data/arkitscenes
+```
+
+`models/`는 checkpoint 크기 때문에 gitignore 처리되어 있다. Detection pipeline을 실행하기 전에 위 경로에 Grounding DINO config/checkpoint와 SAM ViT-B checkpoint를 배치해야 한다.
+
 ---
 
 ## 프로젝트 구조
@@ -192,7 +205,6 @@ language-grounded-3d-object-map/
 │   ├── serve_query_demo.py          # Browser demo server
 │   └── verify_projector.py          # Projection sanity test
 ├── docs/
-│   ├── EXPERIMENT_LOG.md            # 기존 8-label experiments and notes
 │   ├── EXPERIMENT_LOG_GT_ALIGNED.md # GT-aligned 10-label experiment log
 │   ├── PROJECT_PLAN.md              # 프로젝트 계획
 │   └── PROGRESS.md                  # 개발 진행 로그
@@ -222,6 +234,7 @@ conda run -n cv python scripts/build_semantic_map_demo.py \
   --frame-indices "0,8,16,24,32,40,48,56,64,72,80,88,96,104,112,120,128,137,145,153,161,169,177,185,193,201,209,217,225,233,241,249,257,265,273,281,289,297,305,313,321,329,337,345,353,361,369,377,385,393,402,410,418,426,434,442,450,458,466,474,482,490,498,506,514,522,530,538,546,554,562,570,578,586,594,602,610,618,626,634,642,650,658,667,675,683,691,699,707,715,723,731,739,747,755,763,771,779,787,795" \
   --box-threshold 0.25 \
   --text-threshold 0.35 \
+  --association-distance-m 0.6 \
   --out outputs/gt_aligned_10_label/maps/41098076_semantic_map_100frames_text035.json
 ```
 
@@ -274,12 +287,6 @@ Local server 시작:
 python3 scripts/serve_query_demo.py
 ```
 
-주소:
-
-```text
-http://127.0.0.1:8000/web/query_demo.html
-```
-
 지원 query examples:
 
 - 위치: `"Where is the chair?"`, `"의자 어딨어?"`
@@ -320,9 +327,7 @@ Setting:
 - Filter: `observation_count >= 4`
 - GT-aligned prompt labels: `cabinet`, `chair`, `table`, `sofa`, `oven`, `refrigerator`, `washer`, `sink`, `tv_monitor`, `stove`
 
-200-frame scaling experiment는 GT object를 하나 더 맞춰 `22` matches, `73.33%` recall을 기록했지만, precision은 `75.86%`로 낮아지고 duplicate/unmatched predictions는 `24.14%`로 증가했다. 따라서 recall 차이는 작고 precision과 duplicate rate 차이가 커서, representative result는 100-frame setting으로 둔다.
-
-현재 GT-aligned ablations는 [docs/EXPERIMENT_LOG_GT_ALIGNED.md](docs/EXPERIMENT_LOG_GT_ALIGNED.md), 기존 8-label experiments는 [docs/EXPERIMENT_LOG.md](docs/EXPERIMENT_LOG.md) 참고.
+현재 GT-aligned ablations는 [docs/EXPERIMENT_LOG_GT_ALIGNED.md](docs/EXPERIMENT_LOG_GT_ALIGNED.md) 참고.
 
 ---
 

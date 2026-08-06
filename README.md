@@ -103,7 +103,7 @@ flowchart TB
   - Centroid-based object association.
 - [x] **Phase 5: Evaluation**
   - Centroid-based precision, recall, localization error, duplicate rate.
-  - GT-aligned 10-label evaluation with 20-frame, 50-frame, 100-frame, 200-frame, threshold, and association-distance ablations.
+  - GT-aligned 10-label evaluation with threshold and association-distance ablations.
 - [x] **Phase 6: Browser Query Demo**
   - Search UI for location/count/nearest queries.
   - Top-down prediction/GT map toggle.
@@ -149,6 +149,8 @@ flowchart TB
    pip install groundingdino-py segment-anything
    ```
 
+   There is no pinned dependency lockfile yet, so use this section as the tested package set for the prototype environment.
+
 ---
 
 ## Data & Model Weights
@@ -175,6 +177,17 @@ data/arkitscenes/3dod/Training/41098076/
 
 Experiment scene: ARKitScenes 3DOD `41098076`.
 
+Download the scene data with the bundled ARKitScenes helper:
+
+```bash
+conda run -n cv python scripts/download_data.py 3dod \
+  --split Training \
+  --video_id 41098076 \
+  --download_dir data/arkitscenes
+```
+
+`models/` is gitignored because the checkpoints are large. Place the Grounding DINO config/checkpoint and SAM ViT-B checkpoint at the paths shown above before running the detection pipeline.
+
 ---
 
 ## Project Structure
@@ -192,7 +205,6 @@ language-grounded-3d-object-map/
 │   ├── serve_query_demo.py          # Browser demo server
 │   └── verify_projector.py          # Projection sanity test
 ├── docs/
-│   ├── EXPERIMENT_LOG.md            # Earlier 8-label experiments and notes
 │   ├── EXPERIMENT_LOG_GT_ALIGNED.md # GT-aligned 10-label experiment log
 │   ├── PROJECT_PLAN.md              # Project plan
 │   └── PROGRESS.md                  # Development progress log
@@ -222,6 +234,7 @@ conda run -n cv python scripts/build_semantic_map_demo.py \
   --frame-indices "0,8,16,24,32,40,48,56,64,72,80,88,96,104,112,120,128,137,145,153,161,169,177,185,193,201,209,217,225,233,241,249,257,265,273,281,289,297,305,313,321,329,337,345,353,361,369,377,385,393,402,410,418,426,434,442,450,458,466,474,482,490,498,506,514,522,530,538,546,554,562,570,578,586,594,602,610,618,626,634,642,650,658,667,675,683,691,699,707,715,723,731,739,747,755,763,771,779,787,795" \
   --box-threshold 0.25 \
   --text-threshold 0.35 \
+  --association-distance-m 0.6 \
   --out outputs/gt_aligned_10_label/maps/41098076_semantic_map_100frames_text035.json
 ```
 
@@ -274,12 +287,6 @@ Start the local server:
 python3 scripts/serve_query_demo.py
 ```
 
-The script prints and opens:
-
-```text
-http://127.0.0.1:8000/web/query_demo.html
-```
-
 Supported query types:
 
 - Location: `"Where is the chair?"`, `"의자 어딨어?"`
@@ -320,9 +327,7 @@ Setting:
 - Filter: `observation_count >= 4`
 - GT-aligned prompt labels: `cabinet`, `chair`, `table`, `sofa`, `oven`, `refrigerator`, `washer`, `sink`, `tv_monitor`, `stove`
 
-The 200-frame scaling experiment matched one more GT object (`22` matches, `73.33%` recall), but it also reduced precision to `75.86%` and increased duplicate/unmatched predictions to `24.14%`. The 100-frame setting is the representative result because it keeps nearly the same recall with substantially better precision and fewer duplicate candidates.
-
-See [docs/EXPERIMENT_LOG_GT_ALIGNED.md](docs/EXPERIMENT_LOG_GT_ALIGNED.md) for the current GT-aligned ablations and [docs/EXPERIMENT_LOG.md](docs/EXPERIMENT_LOG.md) for the earlier 8-label experiments.
+See [docs/EXPERIMENT_LOG_GT_ALIGNED.md](docs/EXPERIMENT_LOG_GT_ALIGNED.md) for the current GT-aligned ablations.
 
 ---
 
