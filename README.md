@@ -1,5 +1,8 @@
 <div align="center">
   <h1>Language-Grounded 3D Object Map</h1>
+  <a href="https://leesj24601.github.io/Language-Grounded-3D-Object-Map/web/query_demo.html">
+    <img src="https://img.shields.io/badge/Try-Web%20Demo-0D9488?style=for-the-badge" height="42" alt="Try the live web demo">
+  </a>
   <a href="README.ko.md">
     <img src="https://img.shields.io/badge/README-KO%20%E2%86%90%20click%21-111827?style=for-the-badge" height="42" alt="Korean README">
   </a>
@@ -276,6 +279,9 @@ python3 scripts/serve_query_demo.py
 <div align="center">
   <strong>Demo Run</strong><br>
   <img src="docs/static/videos/3d-map-web.gif" width="520" alt="Language-grounded 3D object map demo run"><br>
+  <a href="https://leesj24601.github.io/Language-Grounded-3D-Object-Map/web/query_demo.html">
+    <img src="https://img.shields.io/badge/Try-Web%20Demo-0D9488?style=for-the-badge" height="36" alt="Try the live web demo">
+  </a>
   <a href="https://youtu.be/6Q8FwhylWOU">
     <img src="https://img.shields.io/badge/YouTube-Demo%20Video%20%E2%86%90%20click%21-FF0000?style=for-the-badge&logo=youtube&logoColor=white" height="36" alt="YouTube demo video">
   </a>
